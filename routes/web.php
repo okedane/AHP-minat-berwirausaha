@@ -3,11 +3,11 @@ use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\PerbadinganKriteriaController;
 use App\Http\Controllers\PertanyaanController;
 use App\Http\Controllers\SkalaPenilaianController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RekapController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('admin.dashboard.index');
-});
+Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard.index');
 
 
 Route::prefix('kriteria')->group(function () {
@@ -39,5 +39,11 @@ Route::prefix('skala-penilaian')->group(function () {
     Route::put('/{id}', [SkalaPenilaianController::class, 'update'])->name('skala-penilaian.update');
     Route::delete('/{id}', [SkalaPenilaianController::class, 'delete'])->name('skala-penilaian.delete');
 }); 
+
+
+Route::prefix('rekap')->group(function () {
+    Route::get('/', [RekapController::class, 'index'])->name('rekap.index');
+}); 
+
 
 

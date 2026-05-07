@@ -9,30 +9,30 @@
                 <li class="menu-title" data-key="t-menu">Menu </li>
 
                 <li>
-                    <a href="" class="waves-effect">
-                        <i data-feather="home">/</i>
+                    <a href="{{route('admin.dashboard.index')}}" class="waves-effect">
+                        <i data-feather="home"></i>
                         <span data-key="t-dashboard">Dashboard</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="/kriteria" class="waves-effect">
+                    <a href="{{route('kriteria.index')}}" class="waves-effect">
                         <i data-feather="grid"></i>
                         <span data-key="t-dashboard">Kriteria</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="/pertanyaan" class="waves-effect">
+                    <a href="{{route('pertanyaan.index')}}" class="waves-effect">
                         <i data-feather="help-circle"></i>
                         <span data-key="t-dashboard">Pertanyaan</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="" class="waves-effect">
+                    <a href="{{route('rekap.index')}}" class="waves-effect">
                         <i data-feather="pie-chart"></i>
-                        <span data-key="t-dashboard">Hasil</span>
+                        <span data-key="t-dashboard">Rekap Penilaian</span>
                     </a>
                 </li>
 
