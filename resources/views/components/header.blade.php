@@ -9,7 +9,7 @@
                     </span>
                     <span class="logo-lg">
                         <img src="{{ asset('assets/images/favicon.ico') }}" alt="" height="24"> <span
-                            class="logo-txt">Melita</span>
+                            class="logo-txt">UNIBA</span>
                     </span>
                 </a>
 
@@ -19,7 +19,7 @@
                     </span>
                     <span class="logo-lg">
                         <img src="{{ asset('assets/images/favicon.ico') }}" alt="" height="24"> <span
-                            class="logo-txt">Melita</span>
+                            class="logo-txt">UNIBA</span>
                     </span>
                 </a>
             </div>
@@ -57,7 +57,7 @@
                 </div>
             </div>
 
-            <div class="dropdown d-none d-sm-inline-block">
+            <!-- <div class="dropdown d-none d-sm-inline-block">
                 <button type="button" class="btn header-item" id="mode-setting-btn">
                     <i data-feather="moon" class="icon-lg layout-mode-dark"></i>
                     <i data-feather="sun" class="icon-lg layout-mode-light"></i>
@@ -68,7 +68,7 @@
                 <button type="button" class="btn header-item right-bar-toggle me-2">
                     <i data-feather="settings" class="icon-lg"></i>
                 </button>
-            </div>
+            </div> -->
 
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item bg-light-subtle border-start border-end"

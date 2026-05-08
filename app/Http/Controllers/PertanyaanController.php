@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Kriteria;
 use App\Models\Pertanyaan;
 use Illuminate\Http\Request;
+use Exception;
+
 
 class PertanyaanController extends Controller
 {

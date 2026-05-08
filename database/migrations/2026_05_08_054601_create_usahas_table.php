@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('skala_penilaians', function (Blueprint $table) {
+        Schema::create('usahas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pertanyaan_id')->constrained('pertanyaans')->onDelete('cascade');
-            $table->string('label');
-            $table->integer('skor');
+            $table->string('nama_usaha');
+            $table->foreignId('klasifikasi_penilaian_id')->references('id')->on('klasifikasi_penilaians')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('skala_penilaians');
+        Schema::dropIfExists('usahas');
     }
 };

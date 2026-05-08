@@ -4,12 +4,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18"></h4>
-                        <div class="page-title-right">
-                            <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item active">Skala Penilaian</li>
-                            </ol>
-                        </div>
+                        <h4 class="mb-sm-0 font-size-18">Skala Penilaian : {{ $pertanyaan->pertanyaan }} ?</h4>
                     </div>
                 </div>
             </div>
@@ -31,7 +26,7 @@
                             <th style="width:20px">No</th>
                             <th>Label</th>
                             <th>Skor</th>
-                            <th>Pertanyaan</th>
+                            
                             <th style="text-align: center; width: 100px;" class="no-export">Action</th>
                         </tr>
                     </thead>
@@ -41,7 +36,6 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->label }}</td>
                                 <td>{{ $item->skor }}</td>
-                                <td>{{ $item->pertanyaan->pertanyaan }}</td>
                                 <td style="text-align: center; width: 100px;">
                                     <div class="d-flex justify-content-center gap-2">
 

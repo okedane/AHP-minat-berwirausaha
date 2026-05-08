@@ -30,6 +30,13 @@
                 </li>
 
                 <li>
+                    <a href="{{route('klasifikasi-penilaian.index')}}" class="waves-effect">
+                        <i data-feather="list"></i>
+                        <span data-key="t-dashboard">Klasifikasi Penilaian</span>
+                    </a>
+                </li>
+
+                <li>
                     <a href="{{route('rekap.index')}}" class="waves-effect">
                         <i data-feather="pie-chart"></i>
                         <span data-key="t-dashboard">Rekap Penilaian</span>
@@ -42,8 +49,8 @@
                         <span data-key="t-icons">Management Akun</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="">User</a></li>
-                        <li><a href="">Admin</a></li>
+                        <li><a href="{{route('user.index')}}">User</a></li>
+                        <li><a href="{{route('admin.index')}}">Admin</a></li>
                     </ul>
                 </li>
 

@@ -9,16 +9,15 @@ use Illuminate\Database\Seeder;
 // seeders
 use Database\Seeders\KriteriaSeeder;
 use Database\Seeders\PertanyaanSeeder;
-    
+use Database\Seeders\SkalaPenlaianSeeder;
+
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
         $this->call(KriteriaSeeder::class);
         $this->call(PertanyaanSeeder::class);
+        $this->call(SkalaPenlaianSeeder::class);
     }
 }
