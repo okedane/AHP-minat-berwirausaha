@@ -35,6 +35,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->nama_usaha }}</td>
+                                <td>{{ $item->deskripsi }}</td>
                                
                                 <td style="text-align: center; width: 100px;">
                                     <div class="d-flex justify-content-center gap-2">
@@ -129,6 +130,12 @@
                                                                         diisi.</div>
                                                                 </div>
 
+                                                                <div class="mb-3">
+                                                                    <label class="form-label" for="deskripsi">Deskripsi Usaha</label>
+                                                                    <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" required>{{ $item->deskripsi }}</textarea>
+                                                                    <div class="invalid-feedback">Deskripsi Usaha harus diisi.</div>
+                                                                </div>
+
                                                                 <input type="hidden" name="klasifikasi_penilaian_id"
                                                                     value="{{ $item->klasifikasi_penilaian_id }}"> 
                                                             </div>
@@ -182,7 +189,15 @@
                                                 nama usaha harus diisi
                                             </div>
                                         </div>
-                                        
+
+                                        <div class="mb-3">
+                                            <label class="form-label" for="deskripsi">Deskripsi Usaha</label>
+                                            <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" required></textarea>
+                                            <div class="invalid-feedback">
+                                                deskripsi usaha harus diisi
+                                            </div>
+                                        </div>
+
                                         <input type="hidden" name="klasifikasi_penilaian_id" value="{{ $klasifikasiPenilaian->id }}">
                                         <div class="modal-footer">
                                             <button type="reset" class="btn btn-secondary">Reset</button>

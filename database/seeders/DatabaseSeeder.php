@@ -19,5 +19,8 @@ class DatabaseSeeder extends Seeder
         $this->call(KriteriaSeeder::class);
         $this->call(PertanyaanSeeder::class);
         $this->call(SkalaPenlaianSeeder::class);
+        $this->call(KlasifikasiPenilaianSeeder::class);
+        $this->call(UsahaSeeder::class);
+        $this->call(UserSeeder::class);
     }
 }

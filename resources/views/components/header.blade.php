@@ -30,7 +30,7 @@
 
             <!-- Title in place of Search-->
             <div class="app-search d-none d-lg-block">
-                <h4 class="mb-0 mt-2 font-size-18 font-weight-bold" style="color: #556ee6; font-weight: 600;">UNIBA MADURA</h4>
+                <img src="{{ asset('assets/images/uniba.png') }}" alt="UNIBA MADURA" style="height: 40px;">
             </div>
         </div>
 
@@ -82,8 +82,13 @@
                     <a href="" class="dropdown-item"> <i
                             class="mdi mdi-edit font-size-16 align-middle me-1"></i> Ubah Password</a>
 
-                    <a class="dropdown-item" href=""><i
-                            class="mdi mdi-logout font-size-16 align-middle me-1"></i> Logout</a>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="dropdown-item">
+                            <i class="mdi mdi-logout font-size-16 align-middle me-1"></i>
+                            Logout
+                        </button>
+                    </form>
                 </div>
             </div>
 

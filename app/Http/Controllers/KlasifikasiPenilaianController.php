@@ -19,8 +19,8 @@ class KlasifikasiPenilaianController extends Controller
         try {
             $validator = Validator::make($request->all(), [
                 'nama_kategori' => 'required',
-                'min' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/',
-                'max' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/',
+                'nilai_min' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/',
+                'nilai_max' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/',
                 'deskripsi' => 'nullable'
             ]);
 
@@ -40,8 +40,8 @@ class KlasifikasiPenilaianController extends Controller
         try {
             $validator = Validator::make($request->all(), [
                 'nama_kategori' => 'required',
-                'min' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/',
-                'max' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/',
+                'nilai_min' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/',
+                'nilai_max' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/',
                 'deskripsi' => 'nullable'
             ]);
 

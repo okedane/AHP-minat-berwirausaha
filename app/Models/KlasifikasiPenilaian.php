@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class KlasifikasiPenilaian extends Model
 {
-    protected $fillable = ['nama_kategori', 'min', 'max', 'deskripsi'];
+    protected $fillable = ['nama_kategori', 'nilai_min', 'nilai_max', 'deskripsi'];
 
     public function usahas()
     {

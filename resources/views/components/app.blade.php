@@ -39,9 +39,9 @@
     {{-- <script>
         const routes = {
             usersIndex: "{{ route('users.index') }}",
-            pegawaiIndex: "{{ route('pegawai.index') }}",
-            unitKerjaIndex: "{{ route('unitKerja.index') }}"
-        };
+    pegawaiIndex: "{{ route('pegawai.index') }}",
+    unitKerjaIndex: "{{ route('unitKerja.index') }}"
+    };
     </script> --}}
 </head>
 <style>
@@ -184,12 +184,12 @@
     <script src="{{ asset('assets/js/pages/bootstrap-toasts.init.js') }}"></script>
 
     @if (session('success') || session('error'))
-        <script>
-            window.onload = function() {
-                var toast = new bootstrap.Toast(document.getElementById('liveToast'));
-                toast.show();
-            };
-        </script>
+    <script>
+        window.onload = function() {
+            var toast = new bootstrap.Toast(document.getElementById('liveToast'));
+            toast.show();
+        };
+    </script>
     @endif
 
     {{-- <script>
@@ -274,47 +274,6 @@
     </script>
 
 
-
-
-    {{-- <script>
-        function handleSearch(event) {
-            event.preventDefault();
-            const query = document.getElementById('searchInput').value.toLowerCase();
-
-            if (query === "user" || query === "users") {
-                window.location.href = "{{ route('users.index') }}";
-            } else if (query === "pegawai" || query === "pegawau") {
-                window.location.href = "{{ route('pegawai.index') }}";
-            } else if (query === "unitkerja" || query === "unit kerja") {
-                window.location.href = "{{ route('unitKerja.index') }}";
-            } else {
-                alert("Halaman tidak ditemukan");
-            }
-        }
-    </script> --}}
-
-    <script>
-        $(document).ready(function() {
-            $('#pegawaiSelect').select2({
-                placeholder: "Pilih Pegawai",
-                allowClear: true,
-                minimumResultsForSearch: 0
-            });
-        });
-    </script>
-    <!-- <script>
-        $(document).ready(function() {
-            // Force sidebar to be default size
-            document.body.setAttribute('data-sidebar-size', 'lg');
-            document.body.classList.remove('vertical-collpsed');
-            
-            // Check the default radio button
-            let defaultSizeRadio = document.getElementById('sidebar-size-default');
-            if (defaultSizeRadio) {
-                defaultSizeRadio.checked = true;
-            }
-        });
-    </script> -->
 </body>
 
 </html>

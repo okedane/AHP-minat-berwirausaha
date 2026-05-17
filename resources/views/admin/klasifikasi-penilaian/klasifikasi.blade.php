@@ -7,7 +7,7 @@
                         <h4 class="mb-sm-0 font-size-18"></h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item active">Pertanyaan</li>
+                                <li class="breadcrumb-item active">Klasifikasi Penilaian</li>
                             </ol>
                         </div>
                     </div>
@@ -17,9 +17,9 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between align-items-center">
-                            <h4 class="card-title mb-0">Daftar Pertanyaan</h4>
+                            <h4 class="card-title mb-0">Daftar Klasifikasi Penilaian</h4>
                             <button type="button" class="btn btn-primary waves-effect waves-light"
-                                data-bs-toggle="modal" data-bs-target="#myModal">Tambah Pertanyaan</button>
+                                data-bs-toggle="modal" data-bs-target="#myModal">Tambah Klasifikasi</button>
                         </div>
                     </div>
                 </div>
@@ -41,8 +41,8 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->nama_kategori }}</td>
-                            <td>{{ $item->min }}</td>
-                            <td>{{ $item->max }}</td>
+                            <td>{{ $item->nilai_min }}</td>
+                            <td>{{ $item->nilai_max }}</td>
                             <td>{{ $item->deskripsi }}</td>
                             
                             <td style="text-align: center; width: 100px;">
@@ -146,18 +146,18 @@
 
                                                             <!-- Min -->
                                                             <div class="mb-3">
-                                                                <label class="form-label" for="min">Min</label>
-                                                                <input type="number" step="0.01" class="form-control" id="min"
-                                                                    name="min" value="{{ $item->min }}" required>
+                                                                <label class="form-label" for="nilai_min">Min</label>
+                                                                <input type="number" step="0.01" class="form-control" id="nilai_min"
+                                                                    name="nilai_min" value="{{ $item->nilai_min }}" required>
                                                                 <div class="invalid-feedback">Nilai minimum harus
                                                                     diisi.</div>
                                                             </div>
 
                                                             <!-- Max -->
                                                             <div class="mb-3">
-                                                                <label class="form-label" for="max">Max</label>
-                                                                <input type="number" step="0.01" class="form-control" id="max"
-                                                                    name="max" value="{{ $item->max }}" required>
+                                                                <label class="form-label" for="nilai_max">Max</label>
+                                                                <input type="number" step="0.01" class="form-control" id="nilai_max"
+                                                                    name="nilai_max" value="{{ $item->nilai_max }}" required>
                                                                 <div class="invalid-feedback">Nilai maximum harus
                                                                     diisi.</div>
                                                             </div>
@@ -222,7 +222,7 @@
                                         <div class="mb-3">
                                             <label class="form-label" for="validationCustom02">Min</label>
                                             <input type="number" step="0.01" class="form-control" id="validationCustom02"
-                                                placeholder="Masukkan Nilai Minimum" name="min" required>
+                                                placeholder="Masukkan Nilai Minimum" name="nilai_min" required>
                                             <div class="invalid-feedback">
                                                 Nilai minimum harus diisi
                                             </div>
@@ -230,7 +230,7 @@
                                         <div class="mb-3">
                                             <label class="form-label" for="validationCustom03">Max</label>
                                             <input type="number" step="0.01" class="form-control" id="validationCustom03"
-                                                placeholder="Masukkan Nilai Maximum" name="max" required>
+                                                placeholder="Masukkan Nilai Maximum" name="nilai_max" required>
                                             <div class="invalid-feedback">
                                                 Nilai maximum harus diisi
                                             </div>

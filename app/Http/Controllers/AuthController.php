@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -30,9 +33,9 @@ class AuthController extends Controller
             // Redirect berdasarkan role
             switch (Auth::user()->role) {
                 case 'admin':
-                    return redirect()->route('dashboard')->with('success', 'Login berhasil sebagai Admin');
+                    return redirect()->route('admin.dashboard.index')->with('success', 'Login berhasil sebagai Admin');
                 case 'user':
-                    return redirect()->route('welcome')->with('success', 'Login berhasil sebagai User');
+                    return redirect()->route('kuesioner.kuesioner')->with('success', 'Login berhasil sebagai User');
                 default:
                     Auth::logout();
                     return redirect()->route('login')->with('error', 'Role tidak dikenali.');

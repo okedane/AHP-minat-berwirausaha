@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('klasifikasi_penilaians', function (Blueprint $table) {
             $table->id();
             $table->string('nama_kategori');
-            $table->decimal('min', 10, 2)->nullable();
-            $table->decimal('max', 10, 2)->nullable();
+            $table->decimal('nilai_min', 10, 2)->nullable();
+            $table->decimal('nilai_max', 10, 2)->nullable();
             $table->text('deskripsi')->nullable();
             $table->timestamps();
         });
