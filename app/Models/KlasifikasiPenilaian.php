@@ -8,8 +8,13 @@ class KlasifikasiPenilaian extends Model
 {
     protected $fillable = ['nama_kategori', 'nilai_min', 'nilai_max', 'deskripsi'];
 
+    // app/Models/KlasifikasiPenilaian.php
     public function usahas()
     {
         return $this->hasMany(Usaha::class);
+    }
+    public function hasilKuesioners()
+    {
+        return $this->hasMany(HasilKuesioner::class);
     }
 }

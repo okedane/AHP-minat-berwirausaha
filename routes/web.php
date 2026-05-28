@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('guest')->group(function () {
     Route::get('/', [AuthController::class, 'login'])->name('login');
     Route::post('/login-proses', [AuthController::class, 'login_proses'])->name('login.proses');
-    
 });
 
 
@@ -86,9 +85,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 });
 
 
-Route::middleware(['auth', 'role:user'])->group(function () {
-    Route::get('/kuesioner', [KuesionerController::class, 'kuesioner'])->name('kuesioner.kuesioner');
-    Route::get('/hasil', [KuesionerController::class, 'hasil'])->name('kuesioner.hasil');
-    Route::get('/rekap1', [KuesionerController::class, 'rekap'])->name('kuesioner.rekap');
+Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
+    // routes/web.php
+    Route::get('/kuesioner',  [KuesionerController::class, 'kuesioner'])->name('user.kuesioner');
+    Route::post('/kuesioner', [KuesionerController::class, 'store'])->name('user.kuesioner.store');
+    Route::get('/hasil',      [KuesionerController::class, 'hasil'])->name('user.hasil');
+    Route::get('/hasil/{id}', [KuesionerController::class, 'hasil'])->name('user.hasil.show');
+    Route::get('/rekap',      [KuesionerController::class, 'rekap'])->name('user.rekap');
 });
-
