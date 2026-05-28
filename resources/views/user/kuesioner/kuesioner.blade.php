@@ -1,4 +1,3 @@
-{{-- resources/views/user/kuesioner/kuesioner.blade.php --}}
 
 @extends('components.user.app')
 @section('title', 'Kuesioner')
@@ -10,10 +9,10 @@
 @section('content')
 
 {{-- Inject data kriteria & skala dari controller ke JavaScript --}}
-<script>
+<!-- <script>
     window.KRITERIA = @json($kriteria);
     window.SKALA    = @json($skala);
-</script>
+</script> -->
 
 <div style="max-width:720px; margin:0 auto; padding:32px 24px 60px;">
 
@@ -53,7 +52,7 @@
         </div>
         <div class="progress-bar-bg">
             <div class="progress-bar-fill" id="progress-fill"
-                 style="width:{{ (1 / count($kriteria)) * 100 }}%"></div>
+                
         </div>
         <div class="progress-steps" id="progress-steps"></div>
     </div>

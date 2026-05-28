@@ -65,9 +65,7 @@ default => '💡',
         {{ $nk['emoji'] ?? '📌' }} {{ $nk['nama'] }}
       </div>
       <div class="nilai-bar-bg">
-        <div class="nilai-bar-fill"
-          style="width:{{ ($nk['nilai'] / 5) * 100 }}%">
-        </div>
+        <div class="nilai-bar-fill" style="width:{{ ($nk['nilai'] / 5) * 100 }}%"></div>
       </div>
       <div class="nilai-val">{{ number_format($nk['nilai'], 2) }}</div>
     </div>
