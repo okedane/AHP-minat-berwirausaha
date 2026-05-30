@@ -28,7 +28,7 @@ class Kriteria extends Model
         return $this->hasMany(PerbadinganKriteria::class, 'kriteria_id_2');
     } 
 
-    public function pertanyaan()
+    public function pertanyaans()
     {
         return $this->hasMany(Pertanyaan::class);
     }

@@ -85,7 +85,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 });
 
 
-Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
+Route::prefix('user')->group(function () {
     // routes/web.php
     Route::get('/kuesioner',  [KuesionerController::class, 'kuesioner'])->name('user.kuesioner');
     Route::post('/kuesioner', [KuesionerController::class, 'store'])->name('user.kuesioner.store');
