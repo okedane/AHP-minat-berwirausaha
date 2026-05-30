@@ -86,10 +86,32 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 
 Route::prefix('user')->group(function () {
-    // routes/web.php
-    Route::get('/kuesioner',  [KuesionerController::class, 'kuesioner'])->name('user.kuesioner');
-    Route::post('/kuesioner', [KuesionerController::class, 'store'])->name('user.kuesioner.store');
-    Route::get('/hasil',      [KuesionerController::class, 'hasil'])->name('user.hasil');
-    Route::get('/hasil/{id}', [KuesionerController::class, 'hasil'])->name('user.hasil.show');
-    Route::get('/rekap',      [KuesionerController::class, 'rekap'])->name('user.rekap');
+    Route::get(
+        '/kuesioner',
+        [KuesionerController::class, 'kuesioner']
+    )->name('user.kuesioner');
+
+    Route::post(
+        '/kuesioner',
+        [KuesionerController::class, 'store']
+    )->name('user.kuesioner.store');
+
+    // ── HASIL ───────────────────────────────────────────────
+    // Tanpa ID (ambil hasil terakhir)
+    Route::get(
+        '/hasil',
+        [KuesionerController::class, 'hasil']
+    )->name('user.hasil');
+
+    // Dengan ID (lihat hasil spesifik)
+    Route::get(
+        '/hasil/{id}',
+        [KuesionerController::class, 'hasil']
+    )->name('user.hasil.show');
+
+    // ── REKAP ───────────────────────────────────────────────
+    Route::get(
+        '/rekap',
+        [KuesionerController::class, 'rekap']
+    )->name('user.rekap');
 });

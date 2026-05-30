@@ -10,9 +10,9 @@
       <span class="logo-text">UNIBA MADURA</span>
     </a>
    <div class="nav-tabs">
-      <a class="nav-tab {{ request()->routeIs('kuesioner.kuesioner') ? 'active' : '' }}" href="{{ route('kuesioner.kuesioner') }}">Kuesioner</a>
-      <a class="nav-tab {{ request()->routeIs('kuesioner.hasil') ? 'active' : '' }}" href="{{ route('kuesioner.hasil') }}">Hasil</a>
-      <a class="nav-tab {{ request()->routeIs('kuesioner.rekap') ? 'active' : '' }}" href="{{ route('kuesioner.rekap') }}">Rekap</a>
+      <a class="nav-tab {{ request()->routeIs('user.kuesioner') ? 'active' : '' }}" href="{{ route('user.kuesioner') }}">Kuesioner</a>
+      <a class="nav-tab {{ request()->routeIs('user.hasil') ? 'active' : '' }}" href="{{ route('user.hasil') }}">Hasil</a>
+      <a class="nav-tab {{ request()->routeIs('user.rekap') ? 'active' : '' }}" href="{{ route('user.rekap') }}">Rekap</a>
     </div>
     <div class="user-btn">
       <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
