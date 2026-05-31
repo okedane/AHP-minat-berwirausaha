@@ -98,16 +98,11 @@ Route::prefix('user')->group(function () {
 
     // ── HASIL ───────────────────────────────────────────────
     // Tanpa ID (ambil hasil terakhir)
-    Route::get(
-        '/hasil',
-        [KuesionerController::class, 'hasil']
-    )->name('user.hasil');
+    Route::get('/hasil', [KuesionerController::class, 'hasil'])
+        ->name('user.hasil');
 
-    // Dengan ID (lihat hasil spesifik)
-    Route::get(
-        '/hasil/{id}',
-        [KuesionerController::class, 'hasil']
-    )->name('user.hasil.show');
+    Route::get('/hasil/{id}', [KuesionerController::class, 'hasil'])
+        ->name('user.hasil.show');
 
     // ── REKAP ───────────────────────────────────────────────
     Route::get(

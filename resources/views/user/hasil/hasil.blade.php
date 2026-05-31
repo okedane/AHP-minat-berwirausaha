@@ -44,7 +44,7 @@ default => '💡',
     <div class="rekomen-grid">
       @forelse($hasil['rekomendasi'] as $rek)
       <div class="rekomen-card">
-        <div class="rekomen-icon">{{ $rek['icon'] }}</div>
+        
         <div>
           <div class="rekomen-name">{{ $rek['nama'] }}</div>
           <div class="rekomen-desc">{{ $rek['desc'] }}</div>

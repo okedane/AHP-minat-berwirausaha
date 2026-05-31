@@ -16,8 +16,5 @@ class Pertanyaan extends Model
         return $this->belongsTo(Kriteria::class);
     }
 
-    public function skalaPenilaians()
-    {
-        return $this->hasMany(SkalaPenilaian::class);
-    }
+   
 }
