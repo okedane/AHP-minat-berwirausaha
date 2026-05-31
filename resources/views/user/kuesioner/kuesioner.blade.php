@@ -14,7 +14,7 @@
     <div class="hero">
         <div class="hero-label">Penelitian Akademik</div>
 
-        <h1>Kuesioner Minat Berwirausaha Mahasiswa</h1>
+        <h1>Kuesioner Minat Berwirausaha Mahasiswa ICA</h1>
 
         <p>
             Universitas Bahaudin Mudhary Madura —
