@@ -1,18 +1,6 @@
 <x-app>
     <div class="page-content">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18"></h4>
-                        <div class="page-title-right">
-                            <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item active">Pertanyaan</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="row mb-3">
                 <div class="col-12">
                     <div class="card">
@@ -24,6 +12,24 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Filter Kriteria -->
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <form method="GET" action="{{ route('pertanyaan.index') }}" class="d-flex gap-2">
+                        <select class="form-select" name="kriteria_id" onchange="this.form.submit()">
+                            <option value="">Semua Kriteria</option>
+                            @foreach ($kriterias as $kriteria)
+                                <option value="{{ $kriteria->id }}" 
+                                    {{ request('kriteria_id') == $kriteria->id ? 'selected' : '' }}>
+                                    {{ $kriteria->nama }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </form>
+                </div>
+            </div>
+            
             <div class="card-body">
                 <table id="datatable" class="table table-bordered dt-responsive nowrap w-100">
                     <thead>
@@ -42,8 +48,6 @@
                                 <td>{{ $item->kriteria->nama }}</td>
                                 <td style="text-align: center; width: 100px;">
                                     <div class="d-flex justify-content-center gap-2">
-
-                                        <!-- Gunakan div container untuk menyusun tombol secara horizontal -->
                                         <div class="d-flex align-items-center gap-2">
                                             <button type="button" data-bs-target="#editModal{{ $item->id }}"
                                                 data-bs-toggle="modal"
@@ -57,8 +61,6 @@
                                                 style="padding: 3px 6px;">
                                                 <i class="mdi mdi-eye font-size-16 align-middle"></i>
                                             </a>
-
-                                           
 
                                             <form action="{{ route('pertanyaan.delete', $item->id) }}" method="POST"
                                                 id="deleteForm{{ $item->id }}">
@@ -98,12 +100,9 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                 </td>
-
                             </tr>
-
 
                             <div class="row">
                                 <div class="col-lg-6">
@@ -144,8 +143,11 @@
                                                                         Pilih Kriteria
                                                                     </label>
                                                                     <select class="form-select" id="example-select" name="kriteria_id">
-                                                                        @foreach ($kriterias as $item)
-                                                                            <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                                                        @foreach ($kriterias as $k)
+                                                                            <option value="{{ $k->id }}"
+                                                                                {{ $item->kriteria_id == $k->id ? 'selected' : '' }}>
+                                                                                {{ $k->nama }}
+                                                                            </option>
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
@@ -173,58 +175,7 @@
                 </table>
             </div>
         </div>
-        <!-- end cardaa -->
-    </div> <!-- end col -->
-    {{-- </div>
-    </div> --}}
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="card-body">
-                <div>
-                    <div id="myModal" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel"
-                        aria-hidden="true" data-bs-scroll="true" data-bs-backdrop="static">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="myModalLabel">Tambah Pertanyaan</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form class="needs-validation" action="{{ route('pertanyaan.store') }}"
-                                        method="POST" novalidate>
-                                        @csrf
-                                        <div class="mb-3">
-                                            <label class="form-label" for="validationCustom01">Pertanyaan</label>
-                                            <input type="text" class="form-control" id="validationCustom01"
-                                                placeholder="Masukkan Pertanyaan" name="pertanyaan" required>
-                                            <div class="invalid-feedback">
-                                                Pertanyaan harus diisi
-                                            </div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="example-select" class="form-label">
-                                                Pilih Kriteria
-                                            </label>
-                                            <select class="form-select" id="example-select" name="kriteria_id">
-                                                @foreach ($kriterias as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="reset" class="btn btn-secondary">Reset</button>
-                                            <button type="submit" class="btn btn-primary">Simpan</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> <!-- end preview-->
-            </div><!-- end card-body -->
-        </div><!-- end card -->
     </div>
-
-
+    
+    <!-- ... rest of your modals ... -->
 </x-app>

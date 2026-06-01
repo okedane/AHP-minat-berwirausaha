@@ -6,7 +6,7 @@
             </div>
             <div class="col-sm-6">
                 <div class="text-sm-end d-none d-sm-block">
-                    Melita <a href="#!" class="text-decoration-underline">Kitchen</a>
+                    UNIBA <a href="#!" class="text-decoration-underline">MADURA</a>
                 </div>
             </div>
         </div>

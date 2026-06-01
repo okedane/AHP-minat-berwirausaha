@@ -6,7 +6,7 @@
             @elseif($errors->any()) bg-warning text-dark
             @endif">
             <img src="{{ asset('assets/images/logo-sm.svg') }}" alt="" class="me-2" height="18">
-            <strong class="me-auto">Melita Kitchen</strong>
+            <strong class="me-auto">UNIBA MADURA</strong>
             <small class="text-muted">Just now</small>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>

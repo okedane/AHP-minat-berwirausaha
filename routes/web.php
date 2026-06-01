@@ -86,6 +86,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 
 Route::prefix('user')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get(
         '/kuesioner',
         [KuesionerController::class, 'kuesioner']
