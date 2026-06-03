@@ -50,4 +50,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(SkalaPenilaian::class);
     }
+
+    public function hasilQuesioners()
+    {
+        return $this->hasMany(HasilKuesioner::class);
+    }
 }

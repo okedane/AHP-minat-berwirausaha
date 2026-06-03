@@ -23,7 +23,7 @@
                                 <div class="col-6">
                                     <span class="text-muted mb-3 lh-1 d-block text-truncate">kriteria</span>
                                     <h4 class="mb-3">
-                                        <span class="counter-value" data-target="4243"></span>
+                                        <span class="counter-value" data-target="{{ $total_kriteria }}"></span>
                                     </h4>
                                 </div>
                                 <div class="col-6">
@@ -43,7 +43,7 @@
                                 <div class="col-6">
                                     <span class="text-muted mb-3 lh-1 d-block text-truncate">pertanyaan</span>
                                     <h4 class="mb-3">
-                                        <span class="counter-value" data-target="4243"></span>
+                                        <span class="counter-value" data-target="{{ $total_pertanyaan }}"></span>
                                     </h4>
                                 </div>
 
@@ -65,7 +65,7 @@
                                 <div class="col-6">
                                     <span class="text-muted mb-3 lh-1 d-block text-truncate">Total admin</span>
                                     <h4 class="mb-3">
-                                        <span class="counter-value" data-target="4243"></span>
+                                        <span class="counter-value" data-target="{{ $total_admin }}"></span>
                                     </h4>
                                 </div>
                                 <div class="col-6">
@@ -85,7 +85,7 @@
                                 <div class="col-6">
                                     <span class="text-muted mb-3 lh-1 d-block text-truncate">Total user</span>
                                     <h4 class="mb-3">
-                                        <span class="counter-value" data-target="4243"></span>
+                                        <span class="counter-value" data-target="{{ $total_user }}"></span>
                                     </h4>
                                 </div>
                                 <div class="col-6">

@@ -111,6 +111,7 @@
       padding: 8px 20px;
       border-radius: 8px;
       border: none;
+      text-decoration: none;
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 14px;
       font-weight: 600;

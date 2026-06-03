@@ -1,13 +1,13 @@
 <x-app>
     <div class="page-content">
-        <div class="container-fluid">
+        <!-- <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                         <h4 class="mb-sm-0 font-size-18">Klasifikasi : {{ $klasifikasiPenilaian->nama_kategori }} ?</h4>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="row mb-3">
                 <div class="col-12">
                     <div class="card">
@@ -25,8 +25,7 @@
                         <tr>
                             <th style="width:20px">No</th>
                             <th>Nama Usaha</th>
-                            
-                            
+                            <th>Deskripsi</th>
                             <th style="text-align: center; width: 100px;" class="no-export">Action</th>
                         </tr>
                     </thead>
@@ -41,27 +40,27 @@
                                     <div class="d-flex justify-content-center gap-2">
 
                                         <!-- Gunakan div container untuk menyusun tombol secara horizontal -->
-                                        <div class="d-flex align-items-center gap-2">
-                                            <button type="button" data-bs-target="#editModal{{ $item->id }}"
-                                                data-bs-toggle="modal"
-                                                class="btn btn-soft-primary waves-effect waves-light"
-                                                style="padding: 3px 6px;">
-                                                <i class="mdi mdi-pencil font-size-16 align-middle"></i>
-                                            </button>
+                                        <a href="#" data-bs-target="#editModal{{ $item->id }}"
+                                            data-bs-toggle="modal"
+                                            class="btn btn-sm btn-info"
+                                            title="Edit">
+                                            <i class="mdi mdi-pencil"></i>
+                                        </a>
 
-                                           
+                                        <!-- Delete Button -->
+                                        <button type="button"
+                                            class="btn btn-sm btn-danger"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#deleteModal{{ $item->id }}"
+                                            title="Hapus">
+                                            <i class="mdi mdi-trash-can"></i>
+                                        </button>
 
-                                            <form action="{{ route('usaha.destroy', $item->id) }}" method="POST"
-                                                id="deleteForm{{ $item->id }}">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="button" style="padding: 3px 6px;"
-                                                    class="btn btn-soft-danger waves-effect waves-light"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#deleteModal{{ $item->id }}">
-                                                    <i class="mdi mdi-trash-can font-size-16 align-middle"></i>
-                                                </button>
-                                            </form>
+                                        <form action="{{ route('usaha.destroy', $item->id) }}" method="POST"
+                                            id="deleteForm{{ $item->id }}" style="display: none;">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
 
                                             <!-- Modal Konfirmasi Hapus -->
                                             <div class="modal fade" id="deleteModal{{ $item->id }}" tabindex="-1"

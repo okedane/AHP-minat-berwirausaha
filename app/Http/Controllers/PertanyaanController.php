@@ -12,9 +12,19 @@ class PertanyaanController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+     public function index(Request $request)
     {
-        $pertanyaans = Pertanyaan::all();
+        $query = Pertanyaan::query();
+        
+        // Filter berdasarkan kriteria jika ada parameter
+        if ($request->has('kriteria_id') && $request->kriteria_id != '') {
+            $query->where('kriteria_id', $request->kriteria_id);
+        }
+        
+        // Sort berdasarkan kriteria
+        $query->with('kriteria')->orderBy('kriteria_id');
+        
+        $pertanyaans = $query->get();
         $kriterias = Kriteria::all();
         return view('admin.pertanyaan.pertanyaan', compact('pertanyaans','kriterias'));
     }

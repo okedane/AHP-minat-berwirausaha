@@ -17,9 +17,9 @@
                     <thead>
                         <tr>
                             <th style="width:20px">No</th>
-                            <th >Nama </th>
-                            <th >Min</th>
-                            <th >Max</th>
+                            <th>Nama </th>
+                            <th>Min</th>
+                            <th>Max</th>
                             <th>Deskripsi</th>
                             <th style="text-align: center; width: 100px;" class="no-export">Action</th>
                         </tr>
@@ -32,38 +32,37 @@
                             <td>{{ $item->nilai_min }}</td>
                             <td>{{ $item->nilai_max }}</td>
                             <td>{{ $item->deskripsi }}</td>
-                            
+
                             <td style="text-align: center; width: 100px;">
                                 <div class="d-flex justify-content-center gap-2">
 
                                     <!-- Gunakan div container untuk menyusun tombol secara horizontal -->
                                     <div class="d-flex align-items-center gap-2">
-                                        <button type="button" data-bs-target="#editModal{{ $item->id }}"
+                                        <a href="#" data-bs-target="#editModal{{ $item->id }}"
                                             data-bs-toggle="modal"
-                                            class="btn btn-soft-primary waves-effect waves-light"
-                                            style="padding: 3px 6px;">
-                                            <i class="mdi mdi-pencil font-size-16 align-middle"></i>
-                                        </button>
-
-                                        <a href="{{ route('usaha.index', $item->id) }}"
-                                            class="btn btn-soft-primary waves-effect waves-light"
-                                            style="padding: 3px 6px;">
-                                            <i class="mdi mdi-eye font-size-16 align-middle"></i>
+                                            class="btn btn-sm btn-info"
+                                            title="Edit">
+                                            <i class="mdi mdi-pencil"></i>
                                         </a>
-
-
-
-                                        <form action="{{ route('klasifikasi-penilaian.destroy', $item->id) }}" method="POST"
-                                            id="deleteForm{{ $item->id }}">
+                                        <form action="{{ route('kriteria.delete', $item->id) }}" method="POST"
+                                            id="deleteForm{{ $item->id }}" style="display: none;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="button" style="padding: 3px 6px;"
-                                                class="btn btn-soft-danger waves-effect waves-light"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#deleteModal{{ $item->id }}">
-                                                <i class="mdi mdi-trash-can font-size-16 align-middle"></i>
-                                            </button>
                                         </form>
+
+                                        <a href="{{ route('usaha.index', $item->id) }}"
+                                            class="btn btn-sm btn-warning"
+                                            title="Lihat Detail">
+                                            <i class="mdi mdi-eye"></i>
+                                        </a>
+                                        <!-- Delete Button -->
+                                        <button type="button"
+                                            class="btn btn-sm btn-danger"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#deleteModal{{ $item->id }}"
+                                            title="Hapus">
+                                            <i class="mdi mdi-trash-can"></i>
+                                        </button>
 
                                         <!-- Modal Konfirmasi Hapus -->
                                         <div class="modal fade" id="deleteModal{{ $item->id }}" tabindex="-1"
@@ -181,7 +180,7 @@
         </div>
         <!-- end cardaa -->
     </div> <!-- end col -->
- 
+
     <div class="row">
         <div class="col-lg-6">
             <div class="card-body">

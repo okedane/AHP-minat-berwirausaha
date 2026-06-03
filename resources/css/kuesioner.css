@@ -1,0 +1,103 @@
+/* Options Grid Layout */
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 14px;
+}
+
+.option-label {
+    position: relative;
+    display: block;
+    cursor: pointer;
+}
+
+.option-input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    margin: 0;
+}
+
+.option-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px 12px;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    background: #fff;
+    transition: all 0.2s ease;
+    min-height: 100px;
+}
+
+.option-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #f3f4f6;
+    color: #6b7280;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.option-text {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+    line-height: 1.4;
+}
+
+/* Hover state */
+.option-label:hover .option-box {
+    border-color: #d1d5db;
+    background: #f9fafb;
+}
+
+.option-label:hover .option-number {
+    background: #e5e7eb;
+}
+
+/* Checked/Selected state */
+.option-input:checked + .option-box {
+    border-color: #059669;
+    background: #ecfdf5;
+    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+.option-input:checked + .option-box .option-number {
+    background: #059669;
+    color: #fff;
+}
+
+.option-input:checked + .option-box .option-text {
+    color: #047857;
+    font-weight: 600;
+}
+
+/* Focus state for accessibility */
+.option-input:focus-visible + .option-box {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .options-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .option-box {
+        min-height: 80px;
+    }
+}

@@ -16,7 +16,12 @@ class RoleMiddleware
         }
 
         if (Auth::user()->role != $role) {
-            abort(403, 'Akses ditolak');
+
+            Auth::logout();
+
+            return redirect()
+                ->route('login')
+                ->with('error', 'Silakan login kembali.');
         }
 
         return $next($request);

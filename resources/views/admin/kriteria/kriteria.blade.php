@@ -24,11 +24,11 @@
 
                         <div class="d-flex gap-2 ms-auto">
                             @if(count($kriteria) >= 2)
-                            <a href="{{ route('kriteria.matriks.index') }}" class="btn btn-outline-secondary btn-sm">
+                            <a href="{{ route('kriteria.matriks.index') }}" class="btn btn-secondary btn-sm">
                                 <i class="mdi mdi-table me-1"></i> Matriks Perbandingan
                             </a>
                             @endif
-                            <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal"
+                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#myModal">
                                 <i class="mdi mdi-plus me-1"></i> Tambah Kriteria
                             </button>
@@ -62,23 +62,27 @@
 
                                     <!-- Gunakan div container untuk menyusun tombol secara horizontal -->
                                     <div class="d-flex align-items-center gap-2">
-                                        <button type="button" data-bs-target="#editModal{{ $item->id }}"
+                                        <!-- Edit Button -->
+                                        <a href="#" data-bs-target="#editModal{{ $item->id }}"
                                             data-bs-toggle="modal"
-                                            class="btn btn-soft-primary waves-effect waves-light"
-                                            style="padding: 3px 6px;">
-                                            <i class="mdi mdi-pencil font-size-16 align-middle"></i>
+                                            class="btn btn-sm btn-info"
+                                            title="Edit">
+                                            <i class="mdi mdi-pencil"></i>
+                                        </a>
+
+                                        <!-- Delete Button -->
+                                        <button type="button"
+                                            class="btn btn-sm btn-danger"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#deleteModal{{ $item->id }}"
+                                            title="Hapus">
+                                            <i class="mdi mdi-trash-can"></i>
                                         </button>
 
                                         <form action="{{ route('kriteria.delete', $item->id) }}" method="POST"
-                                            id="deleteForm{{ $item->id }}">
+                                            id="deleteForm{{ $item->id }}" style="display: none;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="button" style="padding: 3px 6px;"
-                                                class="btn btn-soft-danger waves-effect waves-light"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#deleteModal{{ $item->id }}">
-                                                <i class="mdi mdi-trash-can font-size-16 align-middle"></i>
-                                            </button>
                                         </form>
 
                                         <!-- Modal Konfirmasi Hapus -->
