@@ -10,6 +10,7 @@ use App\Http\Controllers\ManagementAkunController;
 use App\Http\Controllers\User\KuesionerController;
 use App\Http\Controllers\KlasifikasiPenilaianController;
 use App\Http\Controllers\UsahaController;
+use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -90,7 +91,12 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::prefix('user')->group(function () {
-    
+
+    Route::get('/profile', [ProfileController::class, 'index'])
+        ->name('user.profile');
+    Route::post('/profile', [ProfileController::class, 'store'])
+        ->name('user.profile.store');
+
     Route::get(
         '/kuesioner',
         [KuesionerController::class, 'kuesioner']

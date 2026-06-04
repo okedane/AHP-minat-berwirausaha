@@ -1,10 +1,3 @@
-{{-- resources/views/user/rekap/rekap.blade.php --}}
-{{--
-    Data dari KuesionerController@rekap():
-    $rekap  = paginated collection HasilKuesioner (with klasifikasiPenilaian)
-    $stats  = ['tinggi'=>n, 'sedang'=>n, 'rendah'=>n]
---}}
-
 @extends('components.user.app')
 @section('title', 'Rekap Hasil')
 

@@ -7,6 +7,23 @@
 
 @section('content')
 
+@if(empty($hasil))
+<div style="max-width:720px; margin:0 auto; padding:32px 24px 60px;">
+  <div class="hasil-hero rendah">
+    <span class="hasil-icon">💡</span>
+    <div class="hasil-kategori-label">Hasil Kuesioner</div>
+    <div class="hasil-kategori">Belum Ada Hasil</div>
+    <p class="hasil-desc">Silakan isi kuesioner Anda terlebih dahulu.</p>
+
+    <div class="btn-row" style="justify-content:center; margin-top:24px;">
+      <a href="{{ route('user.kuesioner') }}" class="btn btn-primary">
+        Isi Kuesioner
+      </a>
+    </div>
+  </div>
+</div>
+@else
+
 @php
 $heroClass = match($hasil['kategori']) {
 'Tinggi' => 'tinggi',
@@ -21,7 +38,6 @@ default => '💡',
 @endphp
 
 <div style="max-width:720px; margin:0 auto; padding:32px 24px 60px;">
-
   {{-- HERO HASIL --}}
   <div class="hasil-hero {{ $heroClass }}">
     <span class="hasil-icon">{{ $heroIcon }}</span>
@@ -44,7 +60,6 @@ default => '💡',
     <div class="rekomen-grid">
       @forelse($hasil['rekomendasi'] as $rek)
       <div class="rekomen-card">
-        
         <div>
           <div class="rekomen-name">{{ $rek['nama'] }}</div>
           <div class="rekomen-desc">{{ $rek['desc'] }}</div>
@@ -64,14 +79,10 @@ default => '💡',
       <div class="nilai-name">
         {{ $nk['emoji'] ?? '📌' }} {{ $nk['nama'] }}
       </div>
-      <div class="nilai-bar-bg">
-        <div class="nilai-bar-fill" style="width:{{ ($nk['nilai'] / 5) * 100 }}%"></div>
-      </div>
       <div class="nilai-val">{{ number_format($nk['nilai'], 2) }}</div>
     </div>
     @endforeach
 
-    {{-- Total nilai akhir --}}
     <div style="margin-top:16px; padding-top:12px; border-top:1px solid #dde5df;
                     display:flex; justify-content:space-between; align-items:center;">
       <span style="font-size:13px; font-weight:700; color:#2c3e30;">
@@ -83,7 +94,6 @@ default => '💡',
     </div>
   </div>
 
-  {{-- TOMBOL --}}
   <div class="btn-row" style="justify-content:center; margin-top:24px;">
     <a href="{{ route('user.kuesioner') }}" class="btn btn-outline">
       ← Isi Ulang
@@ -92,6 +102,6 @@ default => '💡',
       Lihat Rekap →
     </a>
   </div>
-
 </div>
+@endif
 @endsection

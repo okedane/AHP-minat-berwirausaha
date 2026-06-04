@@ -88,39 +88,19 @@ class KuesionerController extends Controller
         return redirect()->route('user.hasil', $hasil->id);
     }
 
-    // public function hasil($id = null)
-    // {
-    //     $query = HasilKuesioner::with(['klasifikasiPenilaian.usahas'])
-    //         ->where('user_id', Auth::id());
-
-    //     $hasilModel = $id
-    //         ? $query->findOrFail($id)
-    //         : $query->latest()->firstOrFail();
-
-    //     $klasifikasi = $hasilModel->klasifikasiPenilaian;
-
-    //     $hasil = [
-    //         'nilai_akhir'        => $hasilModel->nilai_akhir,
-    //         'kategori'           => $klasifikasi?->nama_kategori ?? '-',
-    //         'deskripsi'          => $klasifikasi?->deskripsi ?? '-',
-    //         'nilai_per_kriteria' => json_decode($hasilModel->nilai_per_kriteria, true) ?? [],
-    //         'rekomendasi'        => $klasifikasi?->usahas?->map(fn($u) => [
-    //             'nama' => $u->nama_usaha,
-    //             'desc' => $u->deskripsi ?? '',
-    //         ])->toArray() ?? [],
-    //     ];
-
-    //     return view('user.hasil.hasil', compact('hasil'));
-    // }
-
+   
     public function hasil($id = null)
     {
         $query = HasilKuesioner::with(['klasifikasiPenilaian.usahas'])
             ->where('user_id', Auth::id());
 
         $hasilModel = $id
-            ? $query->findOrFail($id)
-            : $query->latest()->firstOrFail();
+            ? $query->find($id)
+            : $query->latest()->first();
+
+        if (!$hasilModel) {
+            return view('user.hasil.hasil', ['hasil' => null]);
+        }
 
         $klasifikasi = $hasilModel->klasifikasiPenilaian;
 
