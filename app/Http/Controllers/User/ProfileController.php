@@ -2,25 +2,37 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use App\Models\Profile;
 use Illuminate\Support\Facades\Auth;
 
-class ProfileController extends Controller
+class ProfileController extends BaseController
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        $profile = Profile::where('user_id', Auth::id())->first();
-        $user    = Auth::user();
+        $user = Auth::user();
+        if (!$user) {
+            return redirect()->route('login');
+        }
+
+        $profile = Profile::where('user_id', $user->id)->first();
 
         return view('user.profile.profile', compact('profile', 'user'));
     }
 
-    // ── Simpan atau update profile ─────────────────────────
-    // POST /profile  →  name: user.profile.store
     public function store(Request $request)
     {
+        $user = Auth::user();
+        if (!$user) {
+            return redirect()->route('login')->with('toast_error', 'Anda harus login terlebih dahulu.');
+        }
+
         $request->validate([
             'nama_lengkap' => 'required|string|max:100',
             'prodi'        => 'required|string|max:100',
@@ -33,9 +45,8 @@ class ProfileController extends Controller
             'angkatan.min'          => 'Angkatan tidak valid.',
         ]);
 
-        // updateOrCreate: update jika sudah ada, buat baru jika belum
         Profile::updateOrCreate(
-            ['user_id' => Auth::id()],
+            ['user_id' => $user->id],
             [
                 'nama_lengkap' => $request->nama_lengkap,
                 'prodi'        => $request->prodi,
