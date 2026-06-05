@@ -8,9 +8,34 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
     rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-     <link rel="stylesheet" href="{{ asset('css/components/navbar.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/components/navbar.css') }}">
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
+
+  @if(session('success'))
+  <script>
+    $.notify("{{ session('success') }}", {
+      className: "success",
+      position: "top right",
+      autoHideDelay: 3000
+    });
+  </script>
+  @endif
+
+  @if(session('error'))
+  <script>
+    $.notify("{{ session('error') }}", {
+      className: "error",
+      position: "top right",
+      autoHideDelay: 3000
+    });
+  </script>
+  @endif
+  <!-- <script src="{{ asset('js/notify-init.js') }}"></script> -->
   <!-- <style>
     :root {
       --hijau: #1a5c2e;
@@ -920,15 +945,66 @@
 
 <body>
 
-  
+
 
   <!-- ══ NAVBAR ══ -->
   @include('components.user.navbar')
 
   @yield('content')
 
- 
+  <script>
+    function togglePassword(inputId, iconId) {
+
+      const input = document.getElementById(inputId);
+      const icon = document.getElementById(iconId);
+
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.remove('ti-eye-off');
+        icon.classList.add('ti-eye');
+      } else {
+        input.type = 'password';
+        icon.classList.remove('ti-eye');
+        icon.classList.add('ti-eye-off');
+      }
+    }
+  </script>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
+
+  @if(session('success'))
+  <script>
+    $.notify("{{ session('success') }}", {
+      className: "success",
+      position: "top right"
+    });
+  </script>
+  @endif
+
+  @if(session('error'))
+  <script>
+    $.notify("{{ session('error') }}", {
+      className: "error",
+      position: "top right"
+    });
+  </script>
+  @endif
+
+  @if($errors->any())
+  <script>
+    $.notify("{{ $errors->first() }}", {
+      className: "error",
+      position: "top right"
+    });
+  </script>
+  @endif
+
+
 
 </body>
+
+
+
 
 </html>

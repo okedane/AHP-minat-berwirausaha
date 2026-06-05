@@ -4,8 +4,10 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
-use App\Models\Profile;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Models\Profile;
+use App\Models\User;
 
 class ProfileController extends BaseController
 {
@@ -17,6 +19,7 @@ class ProfileController extends BaseController
     public function index()
     {
         $user = Auth::user();
+
         if (!$user) {
             return redirect()->route('login');
         }
@@ -26,37 +29,37 @@ class ProfileController extends BaseController
         return view('user.profile.profile', compact('profile', 'user'));
     }
 
-    public function store(Request $request)
+    public function update(Request $request)
     {
         $user = Auth::user();
-        if (!$user) {
-            return redirect()->route('login')->with('toast_error', 'Anda harus login terlebih dahulu.');
+
+        if (!$user instanceof User) {
+            return redirect()->route('login');
         }
 
         $request->validate([
-            'nama_lengkap' => 'required|string|max:100',
-            'prodi'        => 'required|string|max:100',
-            'fakultas'     => 'nullable|string|max:100',
-            'angkatan'     => 'nullable|digits:4|integer|min:2000|max:' . (date('Y') + 1),
+            'current_password' => 'required|string',
+            'new_password' => 'required|string|min:8|confirmed',
         ], [
-            'nama_lengkap.required' => 'Nama lengkap wajib diisi.',
-            'prodi.required'        => 'Program studi wajib diisi.',
-            'angkatan.digits'       => 'Angkatan harus berupa tahun 4 digit.',
-            'angkatan.min'          => 'Angkatan tidak valid.',
+            'current_password.required' => 'Password lama wajib diisi.',
+            'new_password.required' => 'Password baru wajib diisi.',
+            'new_password.min' => 'Password baru minimal 8 karakter.',
+            'new_password.confirmed' => 'Konfirmasi password tidak cocok.',
         ]);
 
-        Profile::updateOrCreate(
-            ['user_id' => $user->id],
-            [
-                'nama_lengkap' => $request->nama_lengkap,
-                'prodi'        => $request->prodi,
-                'fakultas'     => $request->fakultas,
-                'angkatan'     => $request->angkatan,
-            ]
-        );
+        // cek password lama
+        if (!Hash::check($request->current_password, $user->password)) {
+            return back()->withErrors([
+                'current_password' => 'Password lama tidak sesuai.'
+            ])->withInput();
+        }
+
+        $user->update([
+            'password' => Hash::make($request->new_password)
+        ]);
 
         return redirect()
             ->route('user.profile')
-            ->with('toast_success', 'Profil berhasil disimpan!');
+            ->with('success', 'Password berhasil diubah!');
     }
 }

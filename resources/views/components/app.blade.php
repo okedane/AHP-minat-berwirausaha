@@ -238,7 +238,7 @@
             const icon = document.getElementById(iconId);
 
             if (input && button && icon) {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function () {
                     const isPassword = input.type === 'password';
                     input.type = isPassword ? 'text' : 'password';
                     icon.classList.toggle('mdi-eye-outline', !isPassword);
@@ -255,7 +255,7 @@
         // Validasi konfirmasi password saat submit
         const submitBtn = document.getElementById('submitBtn');
         if (submitBtn) {
-            submitBtn.addEventListener('click', function(e) {
+            submitBtn.addEventListener('click', function (e) {
                 const password = document.getElementById('password1')?.value;
                 const confirmPassword = document.getElementById('password2')?.value;
                 const confirmInput = document.getElementById('password2');
@@ -271,7 +271,55 @@
                 }
             });
         }
+
+
+        const dataProdi = {
+    FEB: [
+        "Akuntansi",
+        "Manajemen"
+    ],
+
+    FST: [
+        "Informatika",
+        "Teknik Industri",
+        "Sistem Informasi"
+    ],
+
+    FBA: [
+        "Bahasa dan Kebudayaan Inggris"
+    ],
+
+    FIKOM: [
+        "Kajian Film, Televisi, dan Media"
+    ],
+
+    FH: [
+        "Hukum"
+    ]
+};
+
+document.getElementById('fakultas').addEventListener('change', function () {
+
+    const fakultas = this.value;
+    const prodi = document.getElementById('prodi');
+
+    prodi.innerHTML = '<option value="">-- Pilih Program Studi --</option>';
+
+    if (dataProdi[fakultas]) {
+        dataProdi[fakultas].forEach(item => {
+
+            let option = document.createElement('option');
+
+            option.value = item;
+            option.textContent = item;
+
+            prodi.appendChild(option);
+        });
+    }
+});
     </script>
+
+    
 
 
 </body>

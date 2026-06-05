@@ -40,7 +40,7 @@ default => '💡',
 <div style="max-width:720px; margin:0 auto; padding:32px 24px 60px;">
   {{-- HERO HASIL --}}
   <div class="hasil-hero {{ $heroClass }}">
-    <span class="hasil-icon">{{ $heroIcon }}</span>
+    <!-- <span class="hasil-icon">{{ $heroIcon }}</span> -->
     <div class="hasil-kategori-label">Kategori Minat Wirausaha</div>
     <div class="hasil-kategori">{{ $hasil['kategori'] }}</div>
     <div class="hasil-score">
@@ -56,7 +56,7 @@ default => '💡',
 
   {{-- REKOMENDASI USAHA --}}
   <div class="nilai-section">
-    <div class="nilai-title">🏪 Rekomendasi Jenis Usaha</div>
+    <div class="nilai-title">Rekomendasi Jenis Usaha</div>
     <div class="rekomen-grid">
       @forelse($hasil['rekomendasi'] as $rek)
       <div class="rekomen-card">
@@ -73,11 +73,11 @@ default => '💡',
 
   {{-- NILAI PER KRITERIA --}}
   <div class="nilai-section">
-    <div class="nilai-title">📊 Nilai Per Kriteria</div>
+    <div class="nilai-title">Nilai Per Kriteria</div>
     @foreach($hasil['nilai_per_kriteria'] as $nk)
     <div class="nilai-row">
       <div class="nilai-name">
-        {{ $nk['emoji'] ?? '📌' }} {{ $nk['nama'] }}
+        {{ $nk['nama'] }}
       </div>
       <div class="nilai-val">{{ number_format($nk['nilai'], 2) }}</div>
     </div>

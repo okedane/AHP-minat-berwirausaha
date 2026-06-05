@@ -21,7 +21,7 @@ Route::middleware('guest')->group(function () {
 
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-   
+
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard.index');
 
 
@@ -94,8 +94,8 @@ Route::prefix('user')->group(function () {
 
     Route::get('/profile', [ProfileController::class, 'index'])
         ->name('user.profile');
-    Route::post('/profile', [ProfileController::class, 'store'])
-        ->name('user.profile.store');
+    Route::post('/user/password/update', [ProfileController::class, 'update'])
+        ->name('user.password.update');
 
     Route::get(
         '/kuesioner',

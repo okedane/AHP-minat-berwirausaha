@@ -42,138 +42,171 @@
                             </thead>
                             <tbody>
                                 @foreach ($user as $item)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->name }}</td>
-                                        <td>{{ $item->email }}</td>
-                                        <td style="text-align: center; width: 100px;">
-                                            <div class="d-flex justify-content-center gap-2">
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->name }}</td>
+                                    <td>{{ $item->email }}</td>
+                                    <td style="text-align: center; width: 100px;">
+                                        <div class="d-flex justify-content-center gap-2">
 
-                                                <!-- Gunakan div container untuk menyusun tombol secara horizontal -->
-                                                <div class="d-flex align-items-center gap-2">
-                                                    <button type="button"
-                                                        data-bs-target="#editModal{{ $item->id }}"
+                                            <!-- Gunakan div container untuk menyusun tombol secara horizontal -->
+                                            <div class="d-flex align-items-center gap-2">
+                                                <button type="button"
+                                                    data-bs-target="#editModal{{ $item->id }}"
+                                                    data-bs-toggle="modal"
+                                                    class="btn btn-soft-primary waves-effect waves-light"
+                                                    style="padding: 3px 6px;">
+                                                    <i class="mdi mdi-pencil font-size-16 align-middle"></i>
+                                                </button>
+
+                                                <!-- Tombol Delete -->
+                                                <!-- Tombol Delete dengan Modal Konfirmasi -->
+                                                <form action="{{ route('management-akun.destroy', $item->id) }}"
+                                                    method="POST" id="deleteForm{{ $item->id }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="button" style="padding: 3px 6px;"
+                                                        class="btn btn-soft-danger waves-effect waves-light"
                                                         data-bs-toggle="modal"
-                                                        class="btn btn-soft-primary waves-effect waves-light"
-                                                        style="padding: 3px 6px;">
-                                                        <i class="mdi mdi-pencil font-size-16 align-middle"></i>
+                                                        data-bs-target="#deleteModal{{ $item->id }}">
+                                                        <i class="mdi mdi-trash-can font-size-16 align-middle"></i>
                                                     </button>
+                                                </form>
 
-                                                    <!-- Tombol Delete -->
-                                                    <!-- Tombol Delete dengan Modal Konfirmasi -->
-                                                    <form action="{{ route('management-akun.destroy', $item->id) }}"
-                                                        method="POST" id="deleteForm{{ $item->id }}">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="button" style="padding: 3px 6px;"
-                                                            class="btn btn-soft-danger waves-effect waves-light"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#deleteModal{{ $item->id }}">
-                                                            <i class="mdi mdi-trash-can font-size-16 align-middle"></i>
-                                                        </button>
-                                                    </form>
-
-                                                    <!-- Modal Konfirmasi Hapus -->
-                                                    <div class="modal fade" id="deleteModal{{ $item->id }}"
-                                                        tabindex="-1" aria-labelledby="deleteModalLabel"
-                                                        aria-hidden="true">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="deleteModalLabel">
-                                                                        Konfirmasi
-                                                                        Penghapusan</h5>
-                                                                    <button type="button" class="btn-close"
-                                                                        data-bs-dismiss="modal"
-                                                                        aria-label="Close"></button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    Apakah Anda yakin ingin menghapus pengguna
-                                                                    <strong>{{ $item->name }}</strong>?
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary"
-                                                                        data-bs-dismiss="modal">Batal</button>
-                                                                    <button type="button" class="btn btn-danger"
-                                                                        onclick="document.getElementById('deleteForm{{ $item->id }}').submit();">Hapus</button>
-                                                                </div>
+                                                <!-- Modal Konfirmasi Hapus -->
+                                                <div class="modal fade" id="deleteModal{{ $item->id }}"
+                                                    tabindex="-1" aria-labelledby="deleteModalLabel"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="deleteModalLabel">
+                                                                    Konfirmasi
+                                                                    Penghapusan</h5>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal"
+                                                                    aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                Apakah Anda yakin ingin menghapus pengguna
+                                                                <strong>{{ $item->name }}</strong>?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">Batal</button>
+                                                                <button type="button" class="btn btn-danger"
+                                                                    onclick="document.getElementById('deleteForm{{ $item->id }}').submit();">Hapus</button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-
                                             </div>
-                                        </td>
 
-                                    </tr>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="card-body">
-                                                <div>
-                                                    <!-- sample modal content -->
-                                                    <div id="editModal{{ $item->id }}" class="modal fade"
-                                                        tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true"
-                                                        data-bs-scroll="true" data-bs-backdrop="static">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="myModalLabel">edit
-                                                                        akun</h5>
-                                                                    <button type="button" class="btn-close"
-                                                                        data-bs-dismiss="modal"
-                                                                        aria-label="Close"></button>
-                                                                </div>
-                                                                <form class="needs-validation"
-                                                                    action="{{ route('management-akun.update', $item->id) }}"
-                                                                    method="POST" novalidate>
-                                                                    @csrf
-                                                                    @method('PUT')
-                                                                    <div class="modal-body">
-                                                                        <div class="mb-3">
-                                                                            <label class="form-label"
-                                                                                for="validationCustom01">Name</label>
-                                                                            <input type="text" class="form-control"
-                                                                                id="validationCustom01"
-                                                                                placeholder="Name" name="name"
-                                                                                value="{{ $item->name }}" required>
-                                                                            <div class="invalid-feedback">
-                                                                                Please choose a unique and valid name.
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="mb-3">
-                                                                            <label class="form-label"
-                                                                                for="validationCustom02">Email</label>
-                                                                            <input type="email" class="form-control"
-                                                                                id="validationCustom02"
-                                                                                placeholder="Email" name="email"
-                                                                                value="{{ $item->email }}" required>
-                                                                            <div class="invalid-feedback">
-                                                                                Please choose a unique and valid email.
-                                                                            </div>
-                                                                        </div>
+                                        </div>
+                                    </td>
 
-                                                                        <input type="hidden" name="role" value="user">
-
-
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="reset"
-                                                                        class="btn btn-secondary">Reset</button>
-                                                                        <button type="submit"
-                                                                            class="btn btn-primary">Simpan</button>
-                                                                    </div>
-                                                                </form>
-
+                                </tr>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="card-body">
+                                            <div>
+                                                <!-- sample modal content -->
+                                                <div id="editModal{{ $item->id }}" class="modal fade"
+                                                    tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true"
+                                                    data-bs-scroll="true" data-bs-backdrop="static">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="myModalLabel">edit
+                                                                    akun</h5>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal"
+                                                                    aria-label="Close"></button>
                                                             </div>
+                                                            <form class="needs-validation"
+                                                                action="{{ route('management-akun.update', $item->id) }}"
+                                                                method="POST" novalidate>
+                                                                @csrf
+                                                                @method('PUT')
+
+                                                                <div class="modal-body">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label" for="edit_name_{{ $item->id }}">Name</label>
+                                                                        <input type="text" class="form-control"
+                                                                            id="edit_name_{{ $item->id }}"
+                                                                            placeholder="Name" name="name"
+                                                                            value="{{ $item->name }}" required>
+                                                                        <div class="invalid-feedback">
+                                                                            Please choose a unique and valid name.
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label" for="edit_email_{{ $item->id }}">Email</label>
+                                                                        <input type="email" class="form-control"
+                                                                            id="edit_email_{{ $item->id }}"
+                                                                            placeholder="Email" name="email"
+                                                                            value="{{ $item->email }}" required>
+                                                                        <div class="invalid-feedback">
+                                                                            Please choose a unique and valid email.
+                                                                        </div>
+                                                                    </div>
+
+                                                                    {{-- Profile Fields --}}
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label" for="edit_nama_lengkap_{{ $item->id }}">Nama Lengkap</label>
+                                                                        <input type="text" class="form-control"
+                                                                            id="edit_nama_lengkap_{{ $item->id }}"
+                                                                            placeholder="Nama Lengkap" name="nama_lengkap"
+                                                                            value="{{ $item->profile->nama_lengkap ?? '' }}">
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Fakultas</label>
+                                                                        <select class="form-select" id="fakultas" name="fakultas">
+                                                                            <option value="">-- Pilih Fakultas --</option>
+                                                                            <option value="FEB">Fakultas Ekonomi & Bisnis</option>
+                                                                            <option value="FST">Fakultas Sains dan Teknologi</option>
+                                                                            <option value="FBA">Fakultas Bahasa Asing</option>
+                                                                            <option value="FIKOM">Fakultas Ilmu Komunikasi</option>
+                                                                            <option value="FH">Fakultas Hukum</option>
+                                                                        </select>
+                                                                    </div>
+
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label">Program Studi</label>
+                                                                        <select class="form-select" id="prodi" name="prodi">
+                                                                            <option value="">-- Pilih Fakultas Dulu --</option>
+                                                                        </select>
+                                                                    </div>
+
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label" for="edit_angkatan_{{ $item->id }}">Angkatan</label>
+                                                                        <input type="number" class="form-control"
+                                                                            id="edit_angkatan_{{ $item->id }}"
+                                                                            placeholder="Angkatan" name="angkatan"
+                                                                            value="{{ $item->profile->angkatan ?? '' }}"
+                                                                            min="2000" max="{{ date('Y') + 1 }}">
+                                                                    </div>
+
+                                                                    <input type="hidden" name="role" value="user">
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="reset"
+                                                                        class="btn btn-secondary">Reset</button>
+                                                                    <button type="submit"
+                                                                        class="btn btn-primary">Simpan</button>
+                                                                </div>
+                                                            </form>
 
                                                         </div>
-                                                        < </div><!-- /.modal-dialog -->
-                                                    </div><!-- /.modal -->
-                                                </div> <!-- end preview-->
 
-                                            </div><!-- end card-body -->
-                                        </div><!-- end card -->
-                                    </div>
+                                                    </div>
+                                                    < </div><!-- /.modal-dialog -->
+                                                </div><!-- /.modal -->
+                                            </div> <!-- end preview-->
+
+                                        </div><!-- end card-body -->
+                                    </div><!-- end card -->
+                                </div>
                                 @endforeach
                             </tbody>
 
@@ -218,6 +251,40 @@
                                                 Please choose a unique and valid email.
                                             </div>
                                         </div>
+
+                                        {{-- Profile Fields --}}
+                                        <div class="mb-3">
+                                            <label class="form-label" for="nama_lengkap">Nama Lengkap</label>
+                                            <input type="text" class="form-control"
+                                                id="nama_lengkap"
+                                                placeholder="Nama Lengkap" name="nama_lengkap">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Fakultas</label>
+                                            <select class="form-select" id="fakultas" name="fakultas">
+                                                <option value="">-- Pilih Fakultas --</option>
+                                                <option value="FEB">Fakultas Ekonomi & Bisnis</option>
+                                                <option value="FST">Fakultas Sains dan Teknologi</option>
+                                                <option value="FBA">Fakultas Bahasa Asing</option>
+                                                <option value="FIKOM">Fakultas Ilmu Komunikasi</option>
+                                                <option value="FH">Fakultas Hukum</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label">Program Studi</label>
+                                            <select class="form-select" id="prodi" name="prodi">
+                                                <option value="">-- Pilih Fakultas Dulu --</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="angkatan">Angkatan</label>
+                                            <input type="number" class="form-control"
+                                                id="angkatan"
+                                                placeholder="Angkatan" name="angkatan"
+                                                min="2000" max="{{ date('Y') + 1 }}">
+                                        </div>
+
                                         <div class="mb-3">
                                             <label class="form-label" for="password1">Password</label>
                                             <div class="input-group">
@@ -268,5 +335,4 @@
             </div> <!-- end preview-->
         </div><!-- end card-body -->
     </div><!-- end card -->
-
 </x-app>
