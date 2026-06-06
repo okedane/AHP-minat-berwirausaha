@@ -336,3 +336,65 @@
         </div><!-- end card-body -->
     </div><!-- end card -->
 </x-app>
+
+<script>
+    // Data mapping fakultas ke program studi
+    const prodiMap = {
+        'FEB': [
+            { value: 'Akuntansi', text: 'Akuntansi' },
+            { value: 'Manajemen', text: 'Manajemen' },
+        ],
+        'FST': [
+            { value: 'Teknik Informatika', text: 'Teknik Informatika' },
+            { value: 'Sistem Informasi', text: 'Sistem Informasi' },
+            { value: 'Teknik Mesin', text: 'Teknik Mesin' }
+        ],
+        'FBA': [
+            { value: 'Bahasa Inggris', text: 'Bahasa Inggris' },
+        ],
+        'FIKOM': [
+            { value: 'Jurnalistik', text: 'Jurnalistik' },
+            { value: 'Public Relations', text: 'Public Relations' },
+            { value: 'Advertising', text: 'Advertising' }
+        ],
+        'FH': [
+            { value: 'Hukum Perdata', text: 'Hukum Perdata' },
+            { value: 'Hukum Pidana', text: 'Hukum Pidana' }
+        ]
+    };
+
+    // Handle fakultas change - Create Modal
+    document.getElementById('myModal').addEventListener('shown.bs.modal', function () {
+        const fakultasSelect = this.querySelector('#fakultas');
+        const prodiSelect = this.querySelector('#prodi');
+        
+        fakultasSelect.addEventListener('change', function () {
+            updateProdi(this.value, prodiSelect);
+        });
+    });
+
+    // Handle fakultas change - Edit Modal
+    document.querySelectorAll('[id^="editModal"]').forEach(modal => {
+        modal.addEventListener('shown.bs.modal', function () {
+            const fakultasSelect = this.querySelector('#fakultas');
+            const prodiSelect = this.querySelector('#prodi');
+            
+            fakultasSelect.addEventListener('change', function () {
+                updateProdi(this.value, prodiSelect);
+            });
+        });
+    });
+
+    function updateProdi(fakultasValue, prodiSelect) {
+        prodiSelect.innerHTML = '<option value="">-- Pilih Program Studi --</option>';
+        
+        if (fakultasValue && prodiMap[fakultasValue]) {
+            prodiMap[fakultasValue].forEach(prodi => {
+                const option = document.createElement('option');
+                option.value = prodi.value;
+                option.textContent = prodi.text;
+                prodiSelect.appendChild(option);
+            });
+        }
+    }
+</script>

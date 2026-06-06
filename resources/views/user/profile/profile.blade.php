@@ -63,7 +63,7 @@
         {{-- FORM UBAH PASSWORD --}}
         <div class="form-card">
             <div class="form-card-title">
-                🔒 Ubah Password
+                Ubah Password
             </div>
 
             <form action="{{ route('user.password.update') }}" method="POST">
@@ -148,8 +148,4 @@
         </form>
     </div>
     </div>
-
-
-
-
     @endsection

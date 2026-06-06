@@ -14,29 +14,30 @@ use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('guest')->group(function () {
+Route::middleware(['guest'])->group(function () {
     Route::get('/', [AuthController::class, 'login'])->name('login');
-    Route::post('/login-proses', [AuthController::class, 'login_proses'])->name('login.proses');
+    Route::post('login-proses', [AuthController::class, 'login_proses'])->name('login-proses');
+
+    Route::get('forgot', [AuthController::class, 'forgot'])->name('forgot');
+    Route::post('forgot-proses', [AuthController::class, 'forgot_proses'])->name('forgot-proses');
+    Route::get('verify-code', [AuthController::class, 'verify_code'])->name('verify-code');
+    Route::post('verify-code-proses', [AuthController::class, 'verify_code_proses'])->name('verify-code-proses');
+    Route::get('reset-password', [AuthController::class, 'reset_password'])->name('reset-password');
+    Route::post('reset-password-proses', [AuthController::class, 'reset_password_proses'])->name('reset-password-proses');
 });
 
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard.index');
-
-
+    
     Route::prefix('kriteria')->group(function () {
         Route::get('/', [KriteriaController::class, 'index'])->name('kriteria.index');
         Route::post('/', [KriteriaController::class, 'store'])->name('kriteria.store');
         Route::put('/{id}', [KriteriaController::class, 'update'])->name('kriteria.update');
         Route::delete('/{id}', [KriteriaController::class, 'delete'])->name('kriteria.delete');
-    });
-
-    Route::prefix('kriteria')->group(function () {
-        Route::get('/matriks', [PerbadinganKriteriaController::class, 'index'])
-            ->name('kriteria.matriks.index');
-        Route::post('/matriks', [PerbadinganKriteriaController::class, 'store'])
-            ->name('kriteria.matriks.store');
+        Route::get('/matriks', [PerbadinganKriteriaController::class, 'index'])->name('kriteria.matriks.index');
+        Route::post('/matriks', [PerbadinganKriteriaController::class, 'store'])->name('kriteria.matriks.store');
     });
 
 
@@ -55,20 +56,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::delete('/{id}', [SkalaPenilaianController::class, 'delete'])->name('skala-penilaian.delete');
     });
 
-
-    Route::prefix('rekap')->group(function () {
-        Route::get('/', [RekapController::class, 'index'])->name('rekap.index');
-    });
-
-    Route::prefix('management-akun')->group(function () {
-        Route::get('/admin', [ManagementAkunController::class, 'admin'])->name('admin.index');
-        Route::get('/user', [ManagementAkunController::class, 'user'])->name('user.index');
-        Route::post('/', [ManagementAkunController::class, 'store'])->name('management-akun.store');
-        Route::put('/{id}', [ManagementAkunController::class, 'update'])->name('management-akun.update');
-        Route::delete('/{id}', [ManagementAkunController::class, 'destroy'])->name('management-akun.destroy');
-    });
-
-
     Route::prefix('klasifikasi-penilaian')->group(function () {
         Route::get('/', [KlasifikasiPenilaianController::class, 'index'])->name('klasifikasi-penilaian.index');
         Route::post('/', [KlasifikasiPenilaianController::class, 'store'])->name('klasifikasi-penilaian.store');
@@ -83,41 +70,33 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::put('/{usaha}', [UsahaController::class, 'update'])->name('usaha.update');
         Route::delete('/{usaha}', [UsahaController::class, 'destroy'])->name('usaha.destroy');
     });
-});
 
-Route::middleware('auth')->group(function () {
-    Route::post('/logout', [AuthController::class, 'logout'])
-        ->name('logout');
+
+    Route::prefix('rekap')->group(function () {
+        Route::get('/', [RekapController::class, 'index'])->name('rekap.index');
+    });
+
+    Route::prefix('management-akun')->group(function () {
+        Route::get('/admin', [ManagementAkunController::class, 'admin'])->name('admin.index');
+        Route::get('/user', [ManagementAkunController::class, 'user'])->name('user.index');
+        Route::post('/', [ManagementAkunController::class, 'store'])->name('management-akun.store');
+        Route::put('/{id}', [ManagementAkunController::class, 'update'])->name('management-akun.update');
+        Route::delete('/{id}', [ManagementAkunController::class, 'destroy'])->name('management-akun.destroy');
+    });
 });
 
 Route::prefix('user')->group(function () {
 
-    Route::get('/profile', [ProfileController::class, 'index'])
-        ->name('user.profile');
-    Route::post('/user/password/update', [ProfileController::class, 'update'])
-        ->name('user.password.update');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('user.profile');
+    Route::post('/user/password/update', [ProfileController::class, 'update'])->name('user.password.update');
+    Route::get('/kuesioner', [KuesionerController::class, 'kuesioner'])->name('user.kuesioner');
+    Route::post('/kuesioner', [KuesionerController::class, 'store'])->name('user.kuesioner.store');
+    Route::get('/hasil', [KuesionerController::class, 'hasil'])->name('user.hasil');
+    Route::get('/hasil/{id}', [KuesionerController::class, 'hasil'])->name('user.hasil.show');
+    Route::get('/rekap', [KuesionerController::class, 'rekap'])->name('user.rekap');
+});
 
-    Route::get(
-        '/kuesioner',
-        [KuesionerController::class, 'kuesioner']
-    )->name('user.kuesioner');
 
-    Route::post(
-        '/kuesioner',
-        [KuesionerController::class, 'store']
-    )->name('user.kuesioner.store');
-
-    // ── HASIL ───────────────────────────────────────────────
-    // Tanpa ID (ambil hasil terakhir)
-    Route::get('/hasil', [KuesionerController::class, 'hasil'])
-        ->name('user.hasil');
-
-    Route::get('/hasil/{id}', [KuesionerController::class, 'hasil'])
-        ->name('user.hasil.show');
-
-    // ── REKAP ───────────────────────────────────────────────
-    Route::get(
-        '/rekap',
-        [KuesionerController::class, 'rekap']
-    )->name('user.rekap');
+Route::middleware('auth')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });

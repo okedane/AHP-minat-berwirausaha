@@ -8,13 +8,13 @@
                         <div class="mb-4 mb-md-5 text-center">
                             <a href="index.html" class="d-block auth-logo">
                                 <img src="assets/images/logo-sm.svg" alt="" height="28"> <span
-                                    class="logo-txt">Minia</span>
+                                    class="logo-txt">UNIBA MADURA</span>
                             </a>
                         </div>
                         <div class="auth-content my-auto">
                             <div class="text-center">
                                 <h5 class="mb-0">Reset Password</h5>
-                                <p class="text-muted mt-2">Reset Password with Minia.</p>
+                                <p class="text-muted mt-2">Reset Password with UNIBA MADURA.</p>
                             </div>
                             @if (session('error'))
                                 <div class="alert alert-danger">{{ session('error') }}</div>
@@ -32,10 +32,11 @@
                                     <input type="email" class="form-control" id="email" name="email"
                                         placeholder="Enter email">
                                 </div>
-                                <div class="mb-3 mt-4">
-                                    <button
-                                       class="btn
-                                        btn-primary w-100 waves-effect waves-light" style="background-color: #ff797a; border-color: #ff797a; color: #fff;  type="submit">Send</button>
+                                 <div class="mb-3">
+                                    <button class="btn w-100 waves-effect waves-light" type="submit"
+                                        style="background-color: #006634; border-color: #006634; color: #fff;">
+                                        Send
+                                    </button>
                                 </div>
                             </form>
 
@@ -48,7 +49,7 @@
                             <p class="mb-0">©
                                 <script>
                                     document.write(new Date().getFullYear())
-                                </script> Minia . Crafted with <i class="mdi mdi-heart text-danger"></i>
+                                </script> UNIBA MADURA . Crafted with <i class="mdi mdi-heart text-danger"></i>
                                 by Themesbrand
                             </p>
                         </div>
@@ -58,9 +59,9 @@
             <!-- end auth full page content -->
         </div>
         <!-- end col -->
-        <div class="col-xxl-9 col-lg-8 col-md-7">
+       <div class="col-xxl-9 col-lg-8 col-md-7">
             <div class="auth-bg pt-md-5 p-4 d-flex">
-                <div class="bg-overlay" style="background-color: #ff797a;"></div>
+                <div class="bg-overlay" style="background-color: #006634;"></div>
                 <ul class="bg-bubbles">
                     <li></li>
                     <li></li>
@@ -78,40 +79,27 @@
                     <div class="col-xl-7">
                         <div class="p-0 p-sm-4 px-xl-0">
                             <div id="reviewcarouselIndicators" class="carousel slide" data-bs-ride="carousel">
-                                {{-- <div
-                                    class="carousel-indicators carousel-indicators-rounded justify-content-start ms-0 mb-0">
-                                    <button type="button" data-bs-target="#reviewcarouselIndicators"
-                                        data-bs-slide-to="0" class="active" aria-current="true"
-                                        aria-label="Slide 1"></button>
-                                    <button type="button" data-bs-target="#reviewcarouselIndicators"
-                                        data-bs-slide-to="1" aria-label="Slide 2"></button>
-                                    <button type="button" data-bs-target="#reviewcarouselIndicators"
-                                        data-bs-slide-to="2" aria-label="Slide 3"></button>
-                                </div> --}}
-                                <!-- end carouselIndicators -->
+
                                 <div class="carousel-inner">
+
                                     <div class="carousel-item active">
                                         <div class="testi-contain text-white">
                                             <i class="bx bxs-quote-alt-left text-success display-6"></i>
 
-                                            <h4 class="mt-4 fw-medium lh-base text-white">“Melita Kitchen bukan sekadar
-                                                tempat makan, tapi pengalaman kuliner yang memanjakan lidah dan hati.
-                                                Menu variatif dan pelayanan ramah membuat saya ingin selalu kembali.”
+                                            <h4 class="mt-4 fw-medium lh-base text-white">
+                                                "Sistem pendukung keputusan ini membantu mahasiswa mengetahui tingkat minat berwirausaha secara lebih objektif berdasarkan hasil kuesioner dan perhitungan metode AHP."
+                                            </h4>
+                                        </div>
+                                    </div>
+
+                                    <div class="carousel-item">
+                                        <div class="testi-contain text-white">
+                                            <i class="bx bxs-quote-alt-left text-success display-6"></i>
+
+                                            <h4 class="mt-4 fw-medium lh-base text-white">
+                                                "Dengan adanya sistem ini, proses pengukuran minat berwirausaha mahasiswa menjadi lebih terstruktur, transparan, dan mudah dipahami."
                                             </h4>
 
-                                            {{-- <div class="mt-4 pt-3 pb-5">
-                                                <div class="d-flex align-items-start">
-                                                    <div class="flex-shrink-0">
-                                                        <img src="assets/images/users/avatar-1.jpg"
-                                                            class="avatar-md img-fluid rounded-circle" alt="...">
-                                                    </div>
-                                                    <div class="flex-grow-1 ms-3 mb-4">
-                                                        <h5 class="font-size-18 text-white">Richard Drews
-                                                        </h5>
-                                                        <p class="mb-0 text-white-50">Web Designer</p>
-                                                    </div>
-                                                </div>
-                                            </div> --}}
                                         </div>
                                     </div>
 
@@ -119,49 +107,15 @@
                                         <div class="testi-contain text-white">
                                             <i class="bx bxs-quote-alt-left text-success display-6"></i>
 
-                                            <h4 class="mt-4 fw-medium lh-base text-white">“Sistem penilaian karyawan
-                                                berbasis MOORA yang diterapkan di Melita Kitchen sangat adil dan
-                                                transparan. Kinerja kami dihargai secara objektif, memotivasi untuk
-                                                terus berkembang.”</h4>
+                                            <h4 class="mt-4 fw-medium lh-base text-white">
+                                                "Metode AHP yang diterapkan pada sistem ini mampu membantu dalam menentukan tingkat minat mahasiswa terhadap dunia wirausaha berdasarkan beberapa kriteria penilaian."
+                                            </h4>
 
-                                            {{-- <div class="mt-4 pt-3 pb-5">
-                                                <div class="d-flex align-items-start">
-                                                    <div class="flex-shrink-0">
-                                                        <img src="assets/images/users/avatar-2.jpg"
-                                                            class="avatar-md img-fluid rounded-circle" alt="...">
-                                                    </div>
-                                                    <div class="flex-grow-1 ms-3 mb-4">
-                                                        <h5 class="font-size-18 text-white">M Nurul Amin
-                                                        </h5>
-                                                        <p class="mb-0 text-white-50">Manager Utama</p>
-                                                    </div>
-                                                </div>
-                                            </div> --}}
                                         </div>
                                     </div>
 
-                                    <div class="carousel-item">
-                                        <div class="testi-contain text-white">
-                                            <i class="bx bxs-quote-alt-left text-success display-6"></i>
-
-                                            <h4 class="mt-4 fw-medium lh-base text-white">“Bekerja di Melita Kitchen
-                                                memberikan saya kesempatan untuk bertumbuh. Penilaian berkala dengan
-                                                metode MOORA membuat kontribusi setiap karyawan terasa bermakna.”</h4>
-
-                                            {{-- <div class="mt-4 pt-3 pb-5">
-                                                <div class="d-flex align-items-start">
-                                                    <img src="assets/images/users/avatar-3.jpg"
-                                                        class="avatar-md img-fluid rounded-circle" alt="...">
-                                                    <div class="flex-1 ms-3 mb-4">
-                                                        <h5 class="font-size-18 text-white">Rossy</h5>
-                                                        <p class="mb-0 text-white-50">Manager
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div> --}}
-                                        </div>
-                                    </div>
                                 </div>
+                                <!-- end carousel-inner -->
                                 <!-- end carousel-inner -->
                             </div>
                             <!-- end review carousel -->

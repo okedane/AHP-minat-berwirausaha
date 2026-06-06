@@ -20,7 +20,7 @@
                                 <h5 class="mb-0">Welcome Back !</h5>
                                 <p class="text-muted mt-2">Sign in to continue to UNIBA.</p>
                             </div>
-                            <form class="mt-4 pt-2" method="POST" action="{{ route('login.proses') }}" novalidate>
+                            <form class="mt-4 pt-2" method="POST" action="{{ route('login-proses') }}" novalidate>
                                 @csrf
                                 <div class="mb-3">
                                     <label class="form-label">Email</label>
@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="">
                                     <div class="">
-                                        <a href="" class="text-muted">Forgot password?</a>
+                                        <a href="{{ route('forgot') }}" class="text-muted">Forgot password?</a>
                                     </div>
                                 </div>
                                 <hr>

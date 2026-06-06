@@ -255,7 +255,7 @@
         // Validasi konfirmasi password saat submit
         const submitBtn = document.getElementById('submitBtn');
         if (submitBtn) {
-            submitBtn.addEventListener('click', function (e) {
+            submitBtn.addEventListener('click', function(e) {
                 const password = document.getElementById('password1')?.value;
                 const confirmPassword = document.getElementById('password2')?.value;
                 const confirmInput = document.getElementById('password2');
@@ -274,52 +274,52 @@
 
 
         const dataProdi = {
-    FEB: [
-        "Akuntansi",
-        "Manajemen"
-    ],
+            FEB: [
+                "Akuntansi",
+                "Manajemen"
+            ],
 
-    FST: [
-        "Informatika",
-        "Teknik Industri",
-        "Sistem Informasi"
-    ],
+            FST: [
+                "Informatika",
+                "Teknik Industri",
+                "Sistem Informasi"
+            ],
 
-    FBA: [
-        "Bahasa dan Kebudayaan Inggris"
-    ],
+            FBA: [
+                "Bahasa dan Kebudayaan Inggris"
+            ],
 
-    FIKOM: [
-        "Kajian Film, Televisi, dan Media"
-    ],
+            FIKOM: [
+                "Kajian Film, Televisi, dan Media"
+            ],
 
-    FH: [
-        "Hukum"
-    ]
-};
+            FH: [
+                "Hukum"
+            ]
+        };
 
-document.getElementById('fakultas').addEventListener('change', function () {
+        document.getElementById('fakultas').addEventListener('change', function() {
 
-    const fakultas = this.value;
-    const prodi = document.getElementById('prodi');
+            const fakultas = this.value;
+            const prodi = document.getElementById('prodi');
 
-    prodi.innerHTML = '<option value="">-- Pilih Program Studi --</option>';
+            prodi.innerHTML = '<option value="">-- Pilih Program Studi --</option>';
 
-    if (dataProdi[fakultas]) {
-        dataProdi[fakultas].forEach(item => {
+            if (dataProdi[fakultas]) {
+                dataProdi[fakultas].forEach(item => {
 
-            let option = document.createElement('option');
+                    let option = document.createElement('option');
 
-            option.value = item;
-            option.textContent = item;
+                    option.value = item;
+                    option.textContent = item;
 
-            prodi.appendChild(option);
+                    prodi.appendChild(option);
+                });
+            }
         });
-    }
-});
     </script>
 
-    
+
 
 
 </body>
