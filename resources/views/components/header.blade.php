@@ -5,20 +5,20 @@
             <div class="navbar-brand-box">
                 <a href="" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="{{ asset('assets/images/favicon.ico') }}" alt="" height="24">
+                        <img src="{{ asset('assets/images/favicon.png') }}" alt="" height="24">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('assets/images/favicon.ico') }}" alt="" height="24"> <span
+                        <img src="{{ asset('assets/images/favicon.png') }}" alt="" height="24"> <span
                             class="logo-txt">UNIBA</span>
                     </span>
                 </a>
 
                 <a href="" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="{{ asset('assets/images/favicon.ico') }}" alt="" height="24">
+                        <img src="{{ asset('assets/images/favicon.png') }}" alt="" height="24">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('assets/images/favicon.ico') }}" alt="" height="24"> <span
+                        <img src="{{ asset('assets/images/favicon.png') }}" alt="" height="24"> <span
                             class="logo-txt">UNIBA</span>
                     </span>
                 </a>
@@ -74,12 +74,12 @@
                 <button type="button" class="btn header-item bg-light-subtle border-start border-end"
                     id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img class="rounded-circle header-profile-user" src="{{ asset('assets/images/favicon.ico') }}" alt="Header Avatar">
-                    <span class="d-none d-xl-inline-block ms-1 fw-medium">Admin</span>
+                    <span class="d-none d-xl-inline-block ms-1 fw-medium">{{ auth()->user()->name }}</span>
                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
                     <!-- item-->
-                    <a href="" class="dropdown-item"> <i
+                    <a href="{{ route('admin.password.form') }}" class="dropdown-item"> <i
                             class="mdi mdi-edit font-size-16 align-middle me-1"></i> Ubah Password</a>
 
                     <form action="{{ route('logout') }}" method="POST">

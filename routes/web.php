@@ -104,4 +104,6 @@ Route::prefix('user')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/admin/password', [DashboardController::class, 'showChangePassword'])->name('admin.password.form');
+    Route::post('/admin/password', [DashboardController::class, 'updatePassword'])->name('admin.password.update');
 });

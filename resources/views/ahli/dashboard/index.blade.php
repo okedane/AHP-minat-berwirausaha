@@ -63,9 +63,9 @@
                         <div class="card-body">
                             <div class="row align-items-center">
                                 <div class="col-6">
-                                    <span class="text-muted mb-3 lh-1 d-block text-truncate">Total admin</span>
+                                    <span class="text-muted mb-3 lh-1 d-block text-truncate">Klasifikasi</span>
                                     <h4 class="mb-3">
-                                        <span class="counter-value" data-target="{{ $total_admin }}"></span>
+                                        <span class="counter-value" data-target="{{ $klasifikasi }}"></span>
                                     </h4>
                                 </div>
                                 <div class="col-6">
@@ -83,7 +83,7 @@
                         <div class="card-body">
                             <div class="row align-items-center">
                                 <div class="col-6">
-                                    <span class="text-muted mb-3 lh-1 d-block text-truncate">Total user</span>
+                                    <span class="text-muted mb-3 lh-1 d-block text-truncate">Mahasiswa</span>
                                     <h4 class="mb-3">
                                         <span class="counter-value" data-target="{{ $total_user }}"></span>
                                     </h4>

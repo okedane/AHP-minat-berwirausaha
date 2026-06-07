@@ -86,6 +86,6 @@ class RekapController extends Controller
             ];
         });
 
-        return view('admin.rekap.detail', compact('kriteria'));
+        return view('ahli.rekap.detail', compact('kriteria'));
     }
 }

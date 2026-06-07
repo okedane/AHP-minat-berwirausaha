@@ -49,7 +49,7 @@
                 @if(auth()->user()?->role === 'admin')
 
                 <li>
-                    <a href="{{route('ahli.dashboard')}}" class="waves-effect">
+                    <a href="{{route('admin.dashboard')}}" class="waves-effect">
                         <i data-feather="home"></i>
                         <span data-key="t-dashboard">Dashboard</span>
                     </a>
