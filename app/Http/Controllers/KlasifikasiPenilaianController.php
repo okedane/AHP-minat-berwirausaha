@@ -12,7 +12,7 @@ class KlasifikasiPenilaianController extends Controller
     public function index()
     {
         $klasifikasiPenilaians = KlasifikasiPenilaian::all();
-        return view('admin.klasifikasi-penilaian.klasifikasi', compact('klasifikasiPenilaians'));
+        return view('ahli.klasifikasi-penilaian.klasifikasi', compact('klasifikasiPenilaians'));
     }
 
     public function store(Request $request){

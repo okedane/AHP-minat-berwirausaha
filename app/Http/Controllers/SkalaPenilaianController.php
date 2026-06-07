@@ -17,7 +17,7 @@ class SkalaPenilaianController extends Controller
     {
         $pertanyaan = Pertanyaan::find($id);
         $skalaPenilaians = SkalaPenilaian::where('pertanyaan_id', $id)->get();
-        return view('admin.skala-penilaian.jawab', compact('skalaPenilaians', 'pertanyaan'));
+        return view('ahli.skala-penilaian.jawab', compact('skalaPenilaians', 'pertanyaan'));
     }
     /**
      * Store a newly created resource in storage.

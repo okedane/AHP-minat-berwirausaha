@@ -18,6 +18,16 @@ class DashboardController extends Controller
             'total_user' => User::where('role', 'user')->count(),
         ];
 
+        return view('ahli.dashboard.index', $stats);
+    }
+
+    public function admin()
+    {
+        $stats = [
+            'total_admin' => User::where('role', 'admin')->count(),
+            'total_user' => User::where('role', 'user')->count(),
+        ];
+
         return view('admin.dashboard.index', $stats);
-    }   
+    }
 }

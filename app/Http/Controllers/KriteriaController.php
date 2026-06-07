@@ -10,7 +10,7 @@ class KriteriaController extends Controller
     public function index()
     {
         $kriteria = Kriteria::orderBy('created_at', 'asc')->get();
-        return view('admin.kriteria.kriteria', compact('kriteria'));
+        return view('ahli.kriteria.kriteria', compact('kriteria'));
     }
 
     public function store(Request $request)

@@ -12,7 +12,7 @@ class UsahaController extends Controller
     {
         $klasifikasiPenilaian = KlasifikasiPenilaian::find($id);
         $usaha = Usaha::where('klasifikasi_penilaian_id', $id)->get();
-        return view('admin.usaha.usaha', compact('klasifikasiPenilaian', 'usaha'));
+        return view('ahli.usaha.usaha', compact('klasifikasiPenilaian', 'usaha'));
     }
 
     public function store(Request $request)

@@ -26,7 +26,7 @@ class PertanyaanController extends Controller
         
         $pertanyaans = $query->get();
         $kriterias = Kriteria::all();
-        return view('admin.pertanyaan.pertanyaan', compact('pertanyaans','kriterias'));
+        return view('ahli.pertanyaan.pertanyaan', compact('pertanyaans','kriterias'));
     }
 
    

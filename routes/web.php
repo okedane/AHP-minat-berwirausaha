@@ -27,10 +27,10 @@ Route::middleware(['guest'])->group(function () {
 });
 
 
-Route::middleware(['auth', 'role:admin'])->group(function () {
+Route::middleware(['auth', 'role:ahli'])->group(function () {
 
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard.index');
-    
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('ahli.dashboard');
+
     Route::prefix('kriteria')->group(function () {
         Route::get('/', [KriteriaController::class, 'index'])->name('kriteria.index');
         Route::post('/', [KriteriaController::class, 'store'])->name('kriteria.store');
@@ -74,8 +74,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     Route::prefix('rekap')->group(function () {
         Route::get('/', [RekapController::class, 'index'])->name('rekap.index');
+        Route::get('/{id}', [RekapController::class, 'show'])->name('rekap.show');
     });
+});
 
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/dashboard-admin', [DashboardController::class, 'admin'])->name('admin.dashboard');
     Route::prefix('management-akun')->group(function () {
         Route::get('/admin', [ManagementAkunController::class, 'admin'])->name('admin.index');
         Route::get('/user', [ManagementAkunController::class, 'user'])->name('user.index');

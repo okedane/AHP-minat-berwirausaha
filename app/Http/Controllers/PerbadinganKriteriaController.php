@@ -29,7 +29,7 @@ class PerbadinganKriteriaController extends Controller
             $konsistensi = $this->hitungKonsistensi($ids, $matriks, $hasil['rataRata']);
         }
 
-        return view('admin.kriteria.matriks', compact(
+        return view('ahli.kriteria.matriks', compact(
             'kriterias',
             'matriks',
             'lengkap',

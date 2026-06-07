@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Kriteria;
-use App\Models\Pertanyaan;
 use Illuminate\Http\Request;
 
 class RekapController extends Controller
@@ -24,64 +23,69 @@ class RekapController extends Controller
             ->orderBy('name')
             ->get();
 
-        // Load kriteria dan pertanyaan untuk mapping
-        $kriterias = Kriteria::with('pertanyaans')->orderBy('id')->get();
-
-        $rekaps = $users->map(function ($user) use ($kriterias) {
+        // Build lightweight rekaps list (don't expand full jawaban here)
+        $rekaps = $users->map(function ($user) {
             $hasilQuesioners = $user->hasilQuesioners;
-            
-            $details = [];
+
             $nilaiAkhir = 0;
             $kategoriInfo = [];
             $usahasRekomendasi = [];
 
-            // Ambil data dari hasil kuesioner terakhir
             if ($hasilQuesioners->isNotEmpty()) {
                 $hasilTerakhir = $hasilQuesioners->first();
                 $nilaiAkhir = $hasilTerakhir->nilai_akhir ?? 0;
-                
+
                 if ($hasilTerakhir->klasifikasiPenilaian) {
                     $kategoriInfo = [
                         'id' => $hasilTerakhir->klasifikasiPenilaian->id,
                         'nama_kategori' => $hasilTerakhir->klasifikasiPenilaian->nama_kategori,
                         'deskripsi' => $hasilTerakhir->klasifikasiPenilaian->deskripsi,
                     ];
-                    $usahasRekomendasi = $hasilTerakhir->klasifikasiPenilaian->usahas->map(function ($usaha) {
-                        return [
-                            'id' => $usaha->id,
-                            'nama' => $usaha->nama,
-                            'deskripsi' => $usaha->deskripsi,
-                        ];
-                    })->toArray();
-                }
-                
-                // Expand jawaban_raw detail untuk tabel detail di modal
-                $jawabanRaw = json_decode($hasilTerakhir->jawaban_raw, true) ?? [];
-                
-                foreach ($kriterias as $ki => $kriteria) {
-                    $pertanyaanList = $kriteria->pertanyaans ?? [];
-                    $jawabans = $jawabanRaw[$ki] ?? [];
-
-                    foreach ($pertanyaanList as $qj => $pertanyaan) {
-                        $nilai = $jawabans[$qj] ?? 0;
-                        $details[] = [
-                            'kriteria_nama' => $kriteria->nama,
-                            'pertanyaan_text' => $pertanyaan->pertanyaan,
-                            'nilai' => $nilai,
-                        ];
-                    }
+                        $usahasRekomendasi = $hasilTerakhir->klasifikasiPenilaian->usahas->map(function ($usaha) {
+                            return [
+                                'id' => $usaha->id,
+                                'nama_usaha' => $usaha->nama_usaha ?? $usaha->nama ?? '-',
+                                'deskripsi' => $usaha->deskripsi ?? '-',
+                            ];
+                        })->toArray();
                 }
             }
 
             return [
                 'user' => $user,
-                'details' => collect($details),
                 'nilai_akhir' => $nilaiAkhir,
                 'kategoriInfo' => $kategoriInfo,
                 'usahasRekomendasi' => $usahasRekomendasi,
             ];
         });
 
-        return view('admin.rekap.rekap', compact('rekaps'));
+        return view('ahli.rekap.rekap', compact('rekaps'));
+    }
+
+    /**
+     * Show detail page for a user's historical hasil kuesioner entries.
+     */
+    public function show($id)
+    {
+        $user = User::with('hasilQuesioners.klasifikasiPenilaian.usahas')->findOrFail($id);
+
+        // Map hasil kuesioners into simple items for the detail page
+        $kriteria = $user->hasilQuesioners->map(function ($hasil) {
+            $kategori = $hasil->klasifikasiPenilaian->nama_kategori ?? '-';
+            $rekomendasiUtama = '-';
+            if ($hasil->klasifikasiPenilaian && $hasil->klasifikasiPenilaian->usahas->isNotEmpty()) {
+                $first = $hasil->klasifikasiPenilaian->usahas->first();
+                    $rekomendasiUtama = $first->nama_usaha ?? $first->nama ?? '-';
+            }
+
+            return (object) [
+                'nilai_akhir' => $hasil->nilai_akhir ?? '-',
+                'kategori' => $kategori,
+                'rekomendasi_utama' => $rekomendasiUtama,
+                'created_at' => $hasil->created_at,
+            ];
+        });
+
+        return view('admin.rekap.detail', compact('kriteria'));
     }
 }

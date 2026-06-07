@@ -36,9 +36,11 @@ class AuthController extends Controller
             // Redirect berdasarkan role
             switch (Auth::user()->role) {
                 case 'admin':
-                    return redirect()->route('admin.dashboard.index')->with('success', 'Login berhasil sebagai Admin');
+                    return redirect()->route('admin.dashboard')->with('success', 'Login berhasil sebagai Admin');
                 case 'user':
                     return redirect()->route('user.kuesioner')->with('success', 'Login berhasil sebagai User');
+                case 'ahli':
+                    return redirect()->route('ahli.dashboard')->with('success', 'Login berhasil sebagai Ahli');
                 default:
                     Auth::logout();
                     return redirect()->route('login')->with('error', 'Role tidak dikenali.');

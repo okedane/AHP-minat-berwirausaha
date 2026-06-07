@@ -8,8 +8,9 @@
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="menu-title" data-key="t-menu">Menu </li>
 
+                @if(auth()->user()?->role === 'ahli')
                 <li>
-                    <a href="{{route('admin.dashboard.index')}}" class="waves-effect">
+                    <a href="{{route('ahli.dashboard')}}" class="waves-effect">
                         <i data-feather="home"></i>
                         <span data-key="t-dashboard">Dashboard</span>
                     </a>
@@ -42,7 +43,17 @@
                         <span data-key="t-dashboard">Rekap Penilaian</span>
                     </a>
                 </li>
+                @endif
 
+
+                @if(auth()->user()?->role === 'admin')
+
+                <li>
+                    <a href="{{route('ahli.dashboard')}}" class="waves-effect">
+                        <i data-feather="home"></i>
+                        <span data-key="t-dashboard">Dashboard</span>
+                    </a>
+                </li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow">
                         <i data-feather="users"></i>
@@ -53,6 +64,7 @@
                         <li><a href="{{route('admin.index')}}">Admin</a></li>
                     </ul>
                 </li>
+                @endif
 
             </ul>
 
