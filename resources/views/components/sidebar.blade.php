@@ -60,7 +60,8 @@
                         <span data-key="t-icons">Management Akun</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{route('user.index')}}">User</a></li>
+                        <li><a href="{{route('user.index')}}">Mahasiswa</a></li>
+                        <li><a href="{{route('ahli.index')}}">Ahli</a></li>
                         <li><a href="{{route('admin.index')}}">Admin</a></li>
                     </ul>
                 </li>

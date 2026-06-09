@@ -84,6 +84,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::prefix('management-akun')->group(function () {
         Route::get('/admin', [ManagementAkunController::class, 'admin'])->name('admin.index');
         Route::get('/user', [ManagementAkunController::class, 'user'])->name('user.index');
+        Route::get('/ahli', [ManagementAkunController::class, 'ahli'])->name('ahli.index');
         Route::post('/', [ManagementAkunController::class, 'store'])->name('management-akun.store');
         Route::put('/{id}', [ManagementAkunController::class, 'update'])->name('management-akun.update');
         Route::delete('/{id}', [ManagementAkunController::class, 'destroy'])->name('management-akun.destroy');

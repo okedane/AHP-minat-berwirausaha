@@ -19,6 +19,12 @@ class ManagementAkunController extends Controller
         return view('admin.akun.user', compact('user'));
     }
 
+     public function ahli() {
+        $ahli = User::with('profile')->where('role', 'ahli')->get();
+        return view('admin.akun.ahli', compact('ahli'));
+    }
+
+
     public function store(Request $request)
     {
         try {
